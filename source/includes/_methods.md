@@ -104,3 +104,5 @@ window.DDC.API.load('your-integration-key', 'https://www.company.com/integration
 ```
 
 The load method is an easy way to include additional scripts or stylesheets required for your integration. Stylesheets and JavaScript files are automatically loaded in an optimal way for each type of asset.
+
+The load method returns a promise which resolves once the the `onload` event on the resource triggers. So, if you are looking to do some changes once a js file has loaded. 
