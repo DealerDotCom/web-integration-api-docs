@@ -126,7 +126,7 @@ The load method also returns a promise which gets resolved on load time of your 
 ```javascript
 window.DDC.API.loadJS('your-integration-key', 'https://www.company.com/script.js'); // Loads a JavaScript file
 ```
-The loadJS method is used to optimally include scripts into your integration. This method also returns a promise which gets resolved on load time of your resource.
+The loadJS method is used to optimally include scripts into your integration. This method also returns a promise which gets resolved on load time of your resource. You can await for the promise to resolve if you are looking to use methods inside your loaded resource.
 
 ## loadCSS(key, resourceUrl)
 
@@ -135,4 +135,4 @@ The loadJS method is used to optimally include scripts into your integration. Th
 ```javascript
 window.DDC.API.loadCSS('your-integration-key', 'https://www.company.com/integration.css'); // Loads a CSS stylesheet
 ```
-The loadCSS method is used to optimally include stylesheets into your integration. 
+The loadCSS method is used to optimally include stylesheets into your integration. This method also returns a promise which gets resolved on load time of your resource. You can await for the promise to resolve to prevent the flash of unstyled content (FOUC).
