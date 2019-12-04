@@ -95,6 +95,7 @@ window.DDC.API.append('your-integration-key', targetEl, appendEl);
 When calling the insert method, the goal is to insert some markup into a location on the page. Once you have constructed the element(s) you wish to insert, you may call the `append` method to complete the process.
 
 ## load(key, resourceUrl)
+***DEPRECATED SOON**  use `loadJS` and `loadCSS` instead*
 
 > Usage
 
@@ -105,4 +106,33 @@ window.DDC.API.load('your-integration-key', 'https://www.company.com/integration
 
 The load method is an easy way to include additional scripts or stylesheets required for your integration. Stylesheets and JavaScript files are automatically loaded in an optimal way for each type of asset.
 
-The load method returns a promise which resolves once the the `onload` event on the resource triggers. So, if you are looking to do some changes once a js file has loaded. 
+The load method also returns a promise which gets resolved on load time of your resource. So, if you want to execute some code after your resources has loaded then you can do something like this:
+```javascript
+(function(API) {
+  API.load('your-integration-key', 'https://www.company.com/lib.js')
+    .then(function (res) {
+      console.log("SUCCESS: ", res);
+      // Code which depends on methods inside lib.js.
+    }).catch(function(err) {
+      console.log("ERROR: ", err);
+    });
+})(window.DDC.API);
+```
+
+## loadJS(key, resourceUrl)
+
+> Usage
+
+```javascript
+window.DDC.API.loadJS('your-integration-key', 'https://www.company.com/script.js'); // Loads a JavaScript file
+```
+The loadJS method is used to optimally include scripts into your integration. This method also returns a promise which gets resolved on load time of your resource.
+
+## loadCSS(key, resourceUrl)
+
+> Usage
+
+```javascript
+window.DDC.API.loadCSS('your-integration-key', 'https://www.company.com/integration.css'); // Loads a CSS stylesheet
+```
+The loadCSS method is used to optimally include stylesheets into your integration. 
