@@ -16,6 +16,8 @@ includes:
   - utilities
   - jwt
   - debugging
+  - samples
+  - bestpractices
 
 search: true
 ---
