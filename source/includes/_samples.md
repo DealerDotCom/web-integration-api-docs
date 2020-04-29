@@ -36,7 +36,7 @@ if (window.ResizeObserver) {
 
   API.insert('content', function (elem, meta) {
     var iframeElem = document.createElement('iframe');
-    iframeElem.src = '/path-to-iframe.htm';
+    iframeElem.src = 'https://www.yourdomain.com/path-to-iframe.htm';
     iframeElem.classList.add('my-integration-name-iframe');
     API.append(elem, iframeElem);
   });
