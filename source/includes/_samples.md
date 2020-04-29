@@ -42,7 +42,7 @@ if (window.ResizeObserver) {
   });
 
   function setIframeHeight(e) {
-    if (e.origin !== 'https://yourdomain.com') {
+    if (e.origin !== 'https://www.yourdomain.com') {
       // You should ALWAYS verify the origin matches the third party domain
       // the iframe is loaded from. For more information, see:
       // https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage#Security_concerns
