@@ -63,4 +63,4 @@ if (window.ResizeObserver) {
 
 An integration may want to insert an iframe that resizes as its contents change. One possible way to accomplish this is for the iframe to determine when content changes and to use `postMessage` to communicate between the iframe and the integration code running on the outer page. `ResizeObserver` is one way to determine content changes, however, it is not supported in IE11. For IE11, one possible solution is to fallback to polling. Styling may be used to ensure a scrollbar never appears in the iframe. The integration running on the outer page can then listen for the message from the iframe to initiate changing the height.
 
-You can see the sample code from the pane on the right of this page running [here](https://webapitestddc.cms.us-west-2.web.dealer.com/growing-iframe-example.htm).
+You can see the sample code from the pane on the right of this page running [here](https://webapitestddc.cms.dealer.com/growing-iframe-example.htm).
