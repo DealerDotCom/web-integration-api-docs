@@ -17,7 +17,6 @@ includes:
   - jwt
   - debugging
   - samples
-  - bestpractices
 
 search: true
 ---
