@@ -8,7 +8,7 @@ In addition to the event based system for working with sites, some utility metho
 
 ```javascript
 (function(WIAPI) {
-  var API = new WIAPI('test-integration'); // Note: Replace 'test-integration' with your actual integration identifier.
+  var API = new WIAPI();
   API.subscribe('vehicle-data-updated-v1', function(data) {
 
     API.log(data.payload.pageData); // Logs the Page Data object
@@ -60,7 +60,7 @@ This fetches a JavaScript object of your integration's configuration for the cur
 
 ```javascript
 (function(WIAPI) {
-  var API = new WIAPI('test-integration'); // Note: Replace 'test-integration' with your actual integration identifier.
+  var API = new WIAPI();
   API.utils.getDealerData().then(function(dealerData) {
     // Logs the Dealership Info Event object for the current website.
     API.log(dealerData);
@@ -76,7 +76,7 @@ This fetches the <a href="#dealership-info-event">Dealership Info Event object</
 
 ```javascript
 (function(WIAPI) {
-  var API = new WIAPI('test-integration'); // Note: Replace 'test-integration' with your actual integration identifier.
+  var API = new WIAPI();
   API.utils.getJwtForVehicles().then(function(jwtObject) {
     API.log(jwtObject);
     // Returns a data structure like this:
@@ -96,7 +96,7 @@ This fetches an object containing the array of VINs on the current page and a co
 
 ```javascript
 (function(WIAPI) {
-  var API = new WIAPI('test-integration'); // Note: Replace 'test-integration' with your actual integration identifier.
+  var API = new WIAPI();
   API.utils.getPageData().then(function(pageData) {
     // Outputs the Page Data Object for the current page.
     API.log(pageData);
@@ -112,7 +112,7 @@ This fetches the <a href="#page-event">Page Event object</a> for the current web
 
 ```javascript
 (function(WIAPI) {
-  var API = new WIAPI('test-integration'); // Note: Replace 'test-integration' with your actual integration identifier.
+  var API = new WIAPI();
   var urlParams = API.utils.getUrlParams(); // Returns the current URL parameters as object attributes, so you can easily access the values.
   API.log(urlParams); // Log the entire object.
   API.log(urlParams.query); // Access just the `query` parameter, for example.
@@ -141,7 +141,7 @@ Will return the following object:
 
 ```javascript
 (function(WIAPI) {
-  var API = new WIAPI('test-integration'); // Note: Replace 'test-integration' with your actual integration identifier.
+  var API = new WIAPI();
   var config = API.utils.getVehicleData().then(function(vehicleData) {
     // Outputs the current set of vehicle data.
     API.log(vehicleData);

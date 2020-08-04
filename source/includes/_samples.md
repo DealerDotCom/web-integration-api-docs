@@ -35,7 +35,7 @@ if (window.ResizeObserver) {
 
 ```javascript
 (function (WIAPI) {
-  var API = new WIAPI('test-integration'); // Note: Replace 'test-integration' with your actual integration identifier.
+  var API = new WIAPI();
 
   API.insert('content', function (elem, meta) {
     var iframeElem = document.createElement('iframe');
