@@ -2,7 +2,8 @@ name: Create External Slate Documentation
 
 on:
   push:
-    branches: [ 'feature/setting_up_git_actions' ]
+    branches: [ 'master' ]
+
 jobs:
   deploy-external-documentation:
     runs-on: ubuntu-18.04
@@ -14,7 +15,8 @@ jobs:
         DOC_BASE_FOLDER: ./source/includes
         ZIP_BUILD: false
     - name: Deploy to GitHub Pages
-      uses: maxheld83/ghpages@v0.3.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        BUILD_DIR: ./source/includes/build/
+      uses: peaceiris/actions-gh-pages@v3.7.0-8
+      with:
+        github_token: ${{ secrets.GH_TOKEN }}
+        publish_dir: ./source/includes/build/
+        keep_files: true

@@ -1,3 +1,3 @@
-# Internal
+# DDC specific docs
 
-DDC specific docs
+All our secrets go here
