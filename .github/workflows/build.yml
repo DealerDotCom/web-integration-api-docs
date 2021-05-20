@@ -7,33 +7,20 @@ on:
     branches: [ '*' ]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        ## Slate Documentation builder which we use to deploy uses Ruby 2.7
-        ## So, test the build against the same version
-        ruby-version: [2.7] 
-
+  action-filter:
+    runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
+    - uses: actions/checkout@master
+    - name: action-filter
+      uses: actions/bin/filter@master
       with:
-        ruby-version: ${{ matrix.ruby-version }}
-
-    - uses: actions/cache@v2
+        args: branch master
+    - name: files-filter
+      uses: wcchristian/gh-pattern-filter-action@master
       with:
-        path: vendor/bundle
-        key: gems-${{ runner.os }}-${{ matrix.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          gems-${{ runner.os }}-${{ matrix.ruby-version }}-
-          gems-${{ runner.os }}-
-
-    - run: bundle config set deployment 'true'
-    - name: bundle install
-      run: |
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
-    - run: bundle exec middleman build
+        args: .*\\.md$
+    - name: Build documentation
+      uses: docker://decathlon/slate-builder-action:2.0.0
+      env:
+        DOC_BASE_FOLDER: .
+        ZIP_BUILD: true
