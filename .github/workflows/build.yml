@@ -13,7 +13,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build documentation
       uses: docker://decathlon/slate-builder-action:latest
-      working-directory: source/includes
       env:
-        DOC_BASE_FOLDER: .
+        DOC_BASE_FOLDER: ./source/includes
         ZIP_BUILD: true
