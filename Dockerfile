@@ -8,7 +8,7 @@ RUN echo ${TEMP}
 WORKDIR /usr/src/app
 
 COPY scripts/*.sh /usr/src/scripts/
-COPY source/* /usr/src/app/source
+COPY source/* /usr/src/app/source/
 
 RUN gem install bundler
 
