@@ -11,12 +11,9 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - name: files-filter
-      uses: wcchristian/gh-pattern-filter-action@master
-      with:
-        args: ".*\\.md$"
     - name: Build documentation
       uses: docker://decathlon/slate-builder-action:latest
+      working-directory: source/includes
       env:
         DOC_BASE_FOLDER: .
         ZIP_BUILD: true
