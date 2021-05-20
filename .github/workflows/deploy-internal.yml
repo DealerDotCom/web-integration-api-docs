@@ -1,5 +1,8 @@
-on: push
-name: Create Slate Documentation on Push
+name: Create Internal Slate Documentation
+
+on:
+  push:
+    branches: [ 'master' ]
 jobs:
   action-filter:
     runs-on: ubuntu-18.04
