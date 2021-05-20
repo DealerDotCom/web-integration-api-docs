@@ -15,7 +15,7 @@ RUN apk --no-cache --update add nodejs g++ make coreutils git zip && \
 # COPY source/images/* /usr/src/app/source/images/
 # COPY source/index.html.md /usr/src/app/source/
 
-RUN rm /usr/src/app/source/
+RUN rm -rf /usr/src/app/source
 COPY source/* /usr/src/app/source/
 
 VOLUME ["/usr/src/doc"]
