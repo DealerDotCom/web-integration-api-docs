@@ -8,7 +8,6 @@ RUN echo ${TEMP}
 WORKDIR /usr/src/app
 
 COPY scripts/*.sh /usr/src/scripts/
-COPY source/* /usr/src/app/source/
 
 RUN gem install bundler
 
@@ -16,6 +15,10 @@ RUN apk --no-cache --update add nodejs g++ make coreutils git zip && \
     git clone https://github.com/slatedocs/slate.git /usr/src/app && \
     bundle install && \
     chmod +x /usr/src/scripts/*.sh
+
+COPY source/includes/*.md /usr/src/app/source/includes/
+COPY source/images/* /usr/src/app/source/images/
+COPY source/index.html.md /usr/src/app/source/
 
 VOLUME ["/usr/src/doc"]
 
