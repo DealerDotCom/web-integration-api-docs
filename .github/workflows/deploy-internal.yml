@@ -10,15 +10,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Test Local dockerfile
-      uses: ./
-
     - name: Build documentation
-      uses: docker://decathlon/slate-builder-action:latest
+      ## Use our deploy docker file
+      uses: ./
       env:
         DOC_BASE_FOLDER: ./source/includes
-        ZIP_BUILD: false
-
+        TEMP: danny
+      
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3.7.0-8
       with:
