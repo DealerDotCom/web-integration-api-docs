@@ -6,15 +6,30 @@ on:
 
 jobs:
   deploy-internal-documentation:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
+    env:
+      ruby-version: 2.5
+
     steps:
     - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ env.ruby-version }}
 
-    - name: Build documentation
-      uses: docker://decathlon/slate-builder-action:latest
-      env:
-        DOC_BASE_FOLDER: ./source/includes
-        ZIP_BUILD: false
+    - uses: actions/cache@v2
+      with:
+        path: vendor/bundle
+        key: gems-${{ runner.os }}-${{ matrix.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          gems-${{ runner.os }}-${{ matrix.ruby-version }}-
+          gems-${{ runner.os }}-
+    - run: bundle config set deployment 'true'
+    - name: bundle install
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+    - run: bundle exec middleman build
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3.7.0-8
