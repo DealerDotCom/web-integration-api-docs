@@ -1,9 +1,7 @@
 #!/bin/sh
 set -e
 
-cp -R $DOC_BASE_FOLDER/* /usr/src/app/source
-
-cd /usr/src/app/source
+cd /usr/src/app
 bundle exec middleman build --verbose --clean
 #Getting back to home folder to allow relative doc_base_folder
 cd $GITHUB_WORKSPACE

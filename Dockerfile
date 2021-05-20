@@ -8,7 +8,7 @@ RUN echo ${TEMP}
 WORKDIR /usr/src/app
 
 COPY scripts/*.sh /usr/src/scripts/
-COPY index.html.md /usr/src
+COPY source/* /usr/src/app/
 
 RUN gem install bundler
 
@@ -19,5 +19,4 @@ RUN apk --no-cache --update add nodejs g++ make coreutils git zip && \
 
 VOLUME ["/usr/src/doc"]
 
-ENTRYPOINT ["sh", "/usr/src/scripts/prepare_doc.sh" ]
 CMD ["sh", "/usr/src/scripts/build.sh"]
