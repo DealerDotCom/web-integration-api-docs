@@ -4,20 +4,12 @@ on:
   push:
     branches: [ 'master' ]
 jobs:
-  action-filter:
+  deploy-internal-documentation:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
-    - name: action-filter
-      uses: actions/bin/filter@master
-      with:
-        args: branch master
-    - name: files-filter
-      uses: wcchristian/gh-pattern-filter-action@master
-      with:
-        args: .*\\.md$
+    - uses: actions/checkout@v2
     - name: Build documentation
-      uses: docker://decathlon/slate-builder-action:2.0.0
+      uses: docker://decathlon/slate-builder-action:latest
       env:
-        DOC_BASE_FOLDER: .
+        DOC_BASE_FOLDER: ./source/includes
         ZIP_BUILD: false

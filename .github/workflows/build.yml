@@ -15,4 +15,4 @@ jobs:
       uses: docker://decathlon/slate-builder-action:latest
       env:
         DOC_BASE_FOLDER: ./source/includes
-        ZIP_BUILD: true
+        ZIP_BUILD: false
