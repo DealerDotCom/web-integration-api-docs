@@ -7,7 +7,7 @@ on:
     branches: [ '*' ]
 
 jobs:
-  action-filter:
+  verify:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -16,7 +16,7 @@ jobs:
       with:
         args: .*\\.md$
     - name: Build documentation
-      uses: docker://decathlon/slate-builder-action:2.0.0
+      uses: docker://decathlon/slate-builder-action:latest
       env:
         DOC_BASE_FOLDER: .
         ZIP_BUILD: true
