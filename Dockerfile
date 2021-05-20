@@ -4,14 +4,16 @@ WORKDIR /usr/src/app
 
 # COPY bin/*.sh /usr/src/bin/
 
+# copy the repo into the docker
+COPY . .
+
 RUN gem install bundler
 
 RUN apk --no-cache --update add nodejs g++ make coreutils && \
     bundle install && \
     chmod +x /usr/src/bin/*.sh
 
-# copy the repo into the docker
-COPY . .
+
 
 # RUN apk --no-cache --update add nodejs g++ make coreutils git zip && \
 #     git clone https://github.com/slatedocs/slate.git /usr/src/app && \
