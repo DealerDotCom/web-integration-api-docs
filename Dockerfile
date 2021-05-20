@@ -18,6 +18,8 @@ RUN apk --no-cache --update add nodejs g++ make coreutils git zip && \
 RUN rm -rf /usr/src/app/source
 COPY source/* /usr/src/app/source/
 
+RUN ls /usr/src/app/source
+
 VOLUME ["/usr/src/doc"]
 
 CMD ["sh", "/usr/src/bin/build.sh"]
