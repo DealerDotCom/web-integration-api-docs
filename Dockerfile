@@ -2,7 +2,7 @@ FROM ruby:2.7-alpine
 
 WORKDIR /usr/src/app
 
-COPY bin/*.sh /usr/src/bin/
+COPY .github/build.sh /usr/src/bin/
 
 RUN gem install bundler
 

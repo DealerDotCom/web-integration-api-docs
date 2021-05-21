@@ -2,7 +2,7 @@ name: Create Internal Slate Documentation
 
 on:
   push:
-    branches: [ 'feature/setting_up_git_actions' ]
+    branches: [ 'master' ]
 
 jobs:
   deploy-internal-documentation:

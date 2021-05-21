@@ -1,0 +1,23 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ 'feature/setting_up_git_actions' ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-18.04
+    env:
+      external-doc-build: ./build/external
+      internal-doc-build: ./build/internal
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build documentation
+      ## Use our deploy docker file
+      ## Which sets up the ruby env to build the slate template
+      uses: ./
+      env:
+        EXTERNAL_DOC_BUILD: ${{ env.external-doc-build }}
+        INTERNAL_DOC_BUILD: ${{ env.internal-doc-build }}
