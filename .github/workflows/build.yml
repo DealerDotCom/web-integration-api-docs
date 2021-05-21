@@ -19,7 +19,7 @@ jobs:
           "includes",
           "javascripts",
           "layouts",
-          "stylesheets"
+          "stylesheets",
           "danny"
         ]
 
