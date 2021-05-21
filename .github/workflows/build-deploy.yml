@@ -23,6 +23,13 @@ jobs:
         EXTERNAL_DOC_BUILD: ${{ env.external-doc-build }}
         INTERNAL_DOC_BUILD: ${{ env.internal-doc-build }}
 
+    - name: Deploy external documentation
+      uses: peaceiris/actions-gh-pages@v3.7.0-8
+      with:
+        github_token: ${{ secrets.GH_TOKEN }}
+        publish_dir: ${{ env.external-doc-build }}
+        keep_files: false
+
     - name: Deploy internal documentation
       uses: peaceiris/actions-gh-pages@v3.7.0-8
       with:

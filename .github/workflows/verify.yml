@@ -19,13 +19,14 @@ jobs:
           "includes",
           "javascripts",
           "layouts",
-          "stylesheets"
+          "stylesheets",
+          "downloads"
         ]
 
     steps:
     - name: Accessing github project files
       uses: actions/checkout@v2
-      
+
     - name: Validate Resource
       run: |
         RESOURCE_PATH=./source/${{ matrix.resource }}
