@@ -27,12 +27,14 @@ jobs:
     - name: Validate Resource
       run: |
         FILE=./source/${{ matrix.resource }}
-        RESOURCE_TYPE=-f
-        if [[ ${{ matrix.resource }} == *.* ]] ; then
         RESOURCE_TYPE=-d
+        if [[ ${{ matrix.resource }} == *.* ]] ; then
+        RESOURCE_TYPE=-f
         fi
         echo "$FILE $RESOURCE_TYPE"
         if test $RESOURCE_TYPE "$FILE"; then
-            echo "$FILE exists."
+          echo "Resource $FILE exists."
+        else
+         echo "Resource $FILE does not exist exists."
         fi
       
