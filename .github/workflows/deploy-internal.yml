@@ -13,6 +13,8 @@ jobs:
     - name: Build documentation
       ## Use our deploy docker file
       uses: ./
+      with:
+        external: false
       
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3.7.0-8

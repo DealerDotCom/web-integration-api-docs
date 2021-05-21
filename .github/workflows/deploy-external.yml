@@ -11,14 +11,15 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Build documentation
-      uses: docker://decathlon/slate-builder-action:latest
-      env:
-        DOC_BASE_FOLDER: ./source/includes
-        ZIP_BUILD: false
-        
+      ## Use our deploy docker file
+      uses: ./
+      with:
+        external: true
+      
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3.7.0-8
       with:
         github_token: ${{ secrets.GH_TOKEN }}
-        publish_dir: ./source/includes/build/
-        keep_files: true
+        destination_dir: internal
+        publish_dir: ./build/
+        keep_files: false
