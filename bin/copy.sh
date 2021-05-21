@@ -1,5 +1,5 @@
 #!/bin/sh
 
-#Getting back to home folder to allow relative doc_base_folder
+#Getting back to home folder 
 cd $GITHUB_WORKSPACE
-mv /usr/src/app/build build
+mv /usr/src/app/build ./build/

@@ -20,4 +20,4 @@ jobs:
         github_token: ${{ secrets.GH_TOKEN }}
         destination_dir: internal
         publish_dir: ./build/
-        keep_files: true
+        keep_files: false
