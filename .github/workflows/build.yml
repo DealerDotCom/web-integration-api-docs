@@ -19,8 +19,7 @@ jobs:
           "includes",
           "javascripts",
           "layouts",
-          "stylesheets",
-          "danny"
+          "stylesheets"
         ]
 
     steps:
@@ -36,7 +35,7 @@ jobs:
         if test $RESOURCE_TYPE "$RESOURCE_PATH"; then
           echo "Resource $RESOURCE_PATH exists."
         else
-         echo "Resource $RESOURCE_PATH does not exist exists."
+         echo "Resource $RESOURCE_PATH does not exists."
          exit 1
         fi
       
