@@ -22,7 +22,6 @@ RUN ls /usr/src/app/source
 
 VOLUME ["/usr/src/doc"]
 
-CMD ["cd", "/usr/src/app/source"]
+RUN cd /usr/src/app/source && bundle exec middleman build --clean
 
-RUN bundle exec middleman build --clean
-RUN sh /usr/src/bin/copy.sh
+CMD ["sh", "/usr/src/bin/copy.sh"]
