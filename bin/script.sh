@@ -1,8 +1,16 @@
 #!/bin/sh
 
-echo "Are we deploying externally: $1 $IS_EXTERNAL"
+cd /usr/src/app/source 
 
-cd /usr/src/app/source && bundle exec middleman build --clean
+if [[ "$IS_EXTERNAL" == "true" ]]; then
+    mv index.html.external.md index.html.md
+    rm index.html.internal.md
+else
+    mv index.html.internal.md index.html.md
+    rm index.html.external.md
+fi
+
+bundle exec middleman build --clean
 
 #Getting back to home folder 
 cd $GITHUB_WORKSPACE
