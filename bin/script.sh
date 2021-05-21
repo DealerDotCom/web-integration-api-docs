@@ -1,6 +1,5 @@
 #!/bin/sh
 
-IS_EXTERNAL=$1
 echo "Are we deploying externally: $1 $IS_EXTERNAL"
 
 cd /usr/src/app/source && bundle exec middleman build --clean
