@@ -13,14 +13,11 @@ jobs:
     - name: Build documentation
       ## Use our deploy docker file
       uses: ./
-      env:
-        DOC_BASE_FOLDER: ./source/includes
-        TEMP: danny
       
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3.7.0-8
       with:
         github_token: ${{ secrets.GH_TOKEN }}
         destination_dir: internal
-        publish_dir: ./source/includes/build/
+        publish_dir: ./build/
         keep_files: true
