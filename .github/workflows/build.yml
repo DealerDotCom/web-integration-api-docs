@@ -5,12 +5,13 @@ on:
     branches: [ '*' ]
 
 jobs:
-  verify:
+  verify-external-document-build:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
+    
     - name: Build documentation
-      uses: docker://decathlon/slate-builder-action:latest
+      ## Use our deploy docker file
+      uses: ./
       env:
-        DOC_BASE_FOLDER: ./source/includes
-        ZIP_BUILD: false
+        IS_EXTERNAL: true

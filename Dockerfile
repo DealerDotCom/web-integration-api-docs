@@ -11,14 +11,9 @@ RUN apk --no-cache --update add nodejs g++ make coreutils git zip && \
     bundle install && \
     chmod +x /usr/src/bin/*.sh
 
-# COPY source/includes/*.md /usr/src/app/source/includes/
-# COPY source/images/* /usr/src/app/source/images/
-# COPY source/index.html.md /usr/src/app/source/
-
+## Remove the original source of slatedocs with our WIAPI docs
 RUN rm -rf /usr/src/app/source
 COPY source/ /usr/src/app/source/
-
-RUN ls /usr/src/app/source
 
 VOLUME ["/usr/src/doc"]
 
