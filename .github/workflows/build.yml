@@ -7,7 +7,7 @@ on:
     branches: [ '*' ]
 
 jobs:
-  verify-template-files:
+  verify-template-resource:
     runs-on: ubuntu-latest
 
     strategy:
@@ -24,18 +24,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Validate files and folders
+    - name: Validate Resource
       run: |
         FILE=./source/${{ matrix.resource }}
-        echo "$FILE"
-        if test -f "$FILE"; then
+        RESOURCE_TYPE=-f
+        if [[ ${{ matrix.resource }} == *.* ]] ; then
+        RESOURCE_TYPE=-d
+        fi
+        echo "$FILE $RESOURCE_TYPE"
+        if test $RESOURCE_TYPE "$FILE"; then
             echo "$FILE exists."
         fi
-      # run: |
-      #   chmod +x "${GITHUB_WORKSPACE}/.github/build.sh"
-
-      #   # run script
-      #   "${GITHUB_WORKSPACE}/.github/script.sh"
-      env:
-        IS_EXTERNAL: true
       
