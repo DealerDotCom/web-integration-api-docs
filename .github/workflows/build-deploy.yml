@@ -2,7 +2,7 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [ 'feature/setting_up_git_actions' ]
+    branches: [ 'master' ]
 
 jobs:
   build-and-deploy:
@@ -15,7 +15,7 @@ jobs:
     - name: Accessing github project files
       uses: actions/checkout@v2
 
-    - name: Build internal and external document
+    - name: Build external and internal document
       ## Use our deploy docker file
       ## Which sets up the ruby env to build the slate template
       uses: ./
