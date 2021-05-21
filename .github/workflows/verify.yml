@@ -23,7 +23,9 @@ jobs:
         ]
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Accessing github project files
+      uses: actions/checkout@v2
+      
     - name: Validate Resource
       run: |
         RESOURCE_PATH=./source/${{ matrix.resource }}

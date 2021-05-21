@@ -8,11 +8,12 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-18.04
     env:
-      external-doc-build: ./build/external
-      internal-doc-build: ./build/internal
+      external-doc-build: external_build
+      internal-doc-build: internal_build
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Accessing github project files
+      uses: actions/checkout@v2
 
     - name: Build internal and external document
       ## Use our deploy docker file
