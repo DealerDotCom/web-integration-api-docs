@@ -2,7 +2,7 @@
 
 ## Content Modification
 
-This method let's you to modify content on a page level. Right now we only support the modification of the `schedule-service` button. So, by using this method you would be able to modify the link attributes of all the schedule service buttons on a page.
+This method allows you to modify content on a page level. Right now we only support the modification of the `schedule-service` button. So, by using this method you would be able to modify the link attributes of all the schedule service buttons on a page.
 
 > Usage:
 
