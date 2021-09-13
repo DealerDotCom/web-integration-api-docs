@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [v2021-09-13T19.26.36] - 2021-09-13
+
 ## [2021-09-13T18.53.45] - 2021-09-13
 
 ### Updated
@@ -95,7 +98,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Tagging and uploading the releases.
 -   Updating the changelog after a release
 
-[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2021-09-13T18.53.45...HEAD
+[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2021-09-13T19.26.36...HEAD
+
+[v2021-09-13T19.26.36]: https://github.com/DealerDotCom/web-integration-api-docs/compare/2021-09-13T18.53.45...v2021-09-13T19.26.36
 
 [v2021-09-13T18.53.45]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2021-08-24T18.08.15...v2021-09-13T18.53.45
 
