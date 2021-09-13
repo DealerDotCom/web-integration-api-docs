@@ -1369,6 +1369,7 @@
     <span class="kd">const</span> <span class="nx">imagesToInsert</span> <span class="o">=</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="na">vin</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1HGCV1F46LA144134</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">insertMethod</span><span class="p">:</span> <span class="dl">'</span><span class="s1">insert</span><span class="dl">'</span><span class="p">,</span>
         <span class="na">images</span><span class="p">:</span> <span class="p">[</span>
           <span class="p">{</span>
             <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image</span><span class="dl">'</span><span class="p">,</span>
@@ -1392,6 +1393,7 @@
       <span class="p">},</span>
       <span class="p">{</span>
         <span class="na">vin</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1HGCV1F48LA139453</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">insertMethod</span><span class="p">:</span> <span class="dl">'</span><span class="s1">replace</span><span class="dl">'</span><span class="p">,</span>
         <span class="na">images</span><span class="p">:</span> <span class="p">[</span>
           <span class="p">{</span>
             <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">image</span><span class="dl">'</span><span class="p">,</span>
@@ -1422,7 +1424,25 @@
 </code></pre></div>
 <p>The <code>insertGalleryContent</code> method allows you to add media to media galleries across various pages of Dealer.com sites. The only currently supported target is <code>vehicle-media</code>, which will insert media into the media carousels on Search Results Pages and Vehicle Details Pages.</p>
 
-<p><code>arrayOfObjects</code> is an array of objects describing the media to be inserted. Each object requires a <code>vin</code> field for the target vehicle, as well as an <code>images</code> array with fields describing the images to insert for that vehicle. The <code>type</code> field specifies the type of media to be inserted. The only currently supported media type is <code>image</code>. Utilizing <code>vehicle-data-updated-v1</code> to know when the list of vehicles changes combined with <code>API.utils.getAttributeForVehicles</code>, you can easily obtain a list of the VINs for vehicles shown on the page. With this data, you could query your service to get the dataset of imagery for those vehicles, then construct the array of objects for <code>API.insertGalleryContent</code>. See the example code for more details on this approach.</p>
+<p><code>arrayOfObjects</code> is an array of objects describing the media to be inserted. Each object requires a <code>vin</code> field for the target vehicle, an <code>images</code> array with fields describing the images to insert for that vehicle as well as an optional <code>insertMethod</code>. The <code>type</code> field specifies the type of media to be inserted. The only currently supported media type is <code>image</code>. Utilizing <code>vehicle-data-updated-v1</code> to know when the list of vehicles changes combined with <code>API.utils.getAttributeForVehicles</code>, you can easily obtain a list of the VINs for vehicles shown on the page. With this data, you could query your service to get the dataset of imagery for those vehicles, then construct the array of objects for <code>API.insertGalleryContent</code>. See the example code for more details on this approach.</p>
+
+<p>The <code>insertMethod</code> accepts the following string values:</p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>insert</code></td>
+<td>This is the default value for inserting media.  This method inserts the content into the pre-existing media.</td>
+</tr>
+<tr>
+<td><code>replace</code></td>
+<td>This method removes all pre-existing media before inserting the new content.</td>
+</tr>
+</tbody></table>
 
 <p>The <code>images</code> array objects support the following additional attributes:</p>
 
