@@ -18,7 +18,7 @@ When you begin development of your script, it's easy to test on any Dealer.com s
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
+  const API = await APILoader.create(document.currentScript || 'test-integration');
   API.test('https://www.yourdomain.com/your-javascript-file.js');
 })(window.DDC.APILoader);
 ```

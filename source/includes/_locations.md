@@ -88,6 +88,43 @@ This element is positioned below the vehicle image area on vehicle search pages.
 This element is positioned below the vehicle tech specs area on vehicle search and detail pages.
 
 
+## Vehicle Payments
+
+> Usage:
+
+```javascript
+(async APILoader => {
+  const API = await APILoader.create(document.currentScript);
+  API.insert('vehicle-payments', (elem, meta) => {
+    // This element is positioned directly below the vehicle pricing area on vehicle search and detail pages.
+  });
+})(window.DDC.APILoader);
+```
+
+> Example Implementation:
+
+```javascript
+(async APILoader => {
+  const API = await APILoader.create(document.currentScript);
+  API.subscribe('page-load-v1', ev => {
+    // Only execute the code on search results and vehicle details pages.
+    if (ev.payload.searchPage || ev.payload.detailPage) {
+      API.insert('vehicle-payments', (elem, meta) => {
+        const button = API.create('button', {
+          text: 'Vehicle Payments',
+          href: '#',
+          classes: 'btn btn-primary'
+        })
+        API.append(elem, button);
+      });
+    }
+  });
+})(window.DDC.APILoader);
+```
+
+This element is positioned directly below the vehicle pricing area on vehicle search and detail pages.
+
+
 ## Vehicle Pricing
 
 > Usage:
@@ -96,7 +133,7 @@ This element is positioned below the vehicle tech specs area on vehicle search a
 (async APILoader => {
   const API = await APILoader.create(document.currentScript);
   API.insert('vehicle-pricing', (elem, meta) => {
-    // This element is positioned below the vehicle pricing area on vehicle search and detail pages.
+    // This element is positioned after the vehicle-payments insert location, and is placed below the pricing/incentives area on vehicle search and detail pages.
   });
 })(window.DDC.APILoader);
 ```
@@ -125,7 +162,7 @@ This element is positioned below the vehicle tech specs area on vehicle search a
 })(window.DDC.APILoader);
 ```
 
-This element is positioned below the vehicle pricing area on vehicle search and detail pages.
+This element is positioned after the vehicle-payments insert location, and is placed below the pricing/incentives area on vehicle search and detail pages.
 
 ## Vehicle Media Container
 
