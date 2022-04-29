@@ -328,6 +328,9 @@
                     <a href="#vehicle-badge" class="toc-h2 toc-link" data-title="Vehicle Badge">Vehicle Badge</a>
                   </li>
                   <li>
+                    <a href="#vehicle-payments" class="toc-h2 toc-link" data-title="Vehicle Payments">Vehicle Payments</a>
+                  </li>
+                  <li>
                     <a href="#vehicle-pricing" class="toc-h2 toc-link" data-title="Vehicle Pricing">Vehicle Pricing</a>
                   </li>
                   <li>
@@ -438,7 +441,7 @@
 
 <p><em>2.)</em> Open the developer tools in your browser and enter this code in the Console window:</p>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">(</span><span class="k">async</span> <span class="nx">APILoader</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">API</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">APILoader</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">currentScript</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">API</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">APILoader</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">currentScript</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">test-integration</span><span class="dl">'</span><span class="p">);</span>
   <span class="nx">API</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://www.yourdomain.com/your-javascript-file.js</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
 </code></pre></div>
@@ -1857,6 +1860,38 @@ The attributes that can be modified are <code>href</code>, <code>target</code>, 
 <span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
 </code></pre></div>
 <p>This element is positioned below the vehicle tech specs area on vehicle search and detail pages.</p>
+<h2 id='vehicle-payments'>Vehicle Payments</h2>
+<blockquote>
+<p>Usage:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">(</span><span class="k">async</span> <span class="nx">APILoader</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">API</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">APILoader</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">currentScript</span><span class="p">);</span>
+  <span class="nx">API</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="dl">'</span><span class="s1">vehicle-payments</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">meta</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// This element is positioned directly below the vehicle pricing area on vehicle search and detail pages.</span>
+  <span class="p">});</span>
+<span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>Example Implementation:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">(</span><span class="k">async</span> <span class="nx">APILoader</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">API</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">APILoader</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">currentScript</span><span class="p">);</span>
+  <span class="nx">API</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="dl">'</span><span class="s1">page-load-v1</span><span class="dl">'</span><span class="p">,</span> <span class="nx">ev</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// Only execute the code on search results and vehicle details pages.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">ev</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">searchPage</span> <span class="o">||</span> <span class="nx">ev</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">detailPage</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">API</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="dl">'</span><span class="s1">vehicle-payments</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">meta</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">API</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+          <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Vehicle Payments</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">href</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">classes</span><span class="p">:</span> <span class="dl">'</span><span class="s1">btn btn-primary</span><span class="dl">'</span>
+        <span class="p">})</span>
+        <span class="nx">API</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">button</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
+</code></pre></div>
+<p>This element is positioned directly below the vehicle pricing area on vehicle search and detail pages.</p>
 <h2 id='vehicle-pricing'>Vehicle Pricing</h2>
 <blockquote>
 <p>Usage:</p>
@@ -1864,7 +1899,7 @@ The attributes that can be modified are <code>href</code>, <code>target</code>, 
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">(</span><span class="k">async</span> <span class="nx">APILoader</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">API</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">APILoader</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">currentScript</span><span class="p">);</span>
   <span class="nx">API</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="dl">'</span><span class="s1">vehicle-pricing</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">meta</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="c1">// This element is positioned below the vehicle pricing area on vehicle search and detail pages.</span>
+    <span class="c1">// This element is positioned after the vehicle-payments insert location, and is placed below the pricing/incentives area on vehicle search and detail pages.</span>
   <span class="p">});</span>
 <span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
 </code></pre></div>
@@ -1891,7 +1926,7 @@ The attributes that can be modified are <code>href</code>, <code>target</code>, 
   <span class="p">});</span>
 <span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
 </code></pre></div>
-<p>This element is positioned below the vehicle pricing area on vehicle search and detail pages.</p>
+<p>This element is positioned after the vehicle-payments insert location, and is placed below the pricing/incentives area on vehicle search and detail pages.</p>
 <h2 id='vehicle-media-container'>Vehicle Media Container</h2>
 <blockquote>
 <p>Usage:</p>
