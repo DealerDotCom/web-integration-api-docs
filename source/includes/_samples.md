@@ -10,18 +10,18 @@ The sample code here is provided as a starting point for how to accomplish tasks
 document.body.style.overflow = 'hidden';
 
 let sendResizeMessage = () => {
-  window.parent.postMessage({
-    type: 'IFRAME_HEIGHT_RESIZE',
-    target: 'test-integration-iframe', // Note: Replace 'test-integration-frame' with your actual iframe identifier.
-    frameHeight: document.body.offsetHeight + 10 /* a little extra for good measure */
-  }, '*');
+	window.parent.postMessage({
+		type: 'IFRAME_HEIGHT_RESIZE',
+		target: 'test-integration-iframe', // Note: Replace 'test-integration-frame' with your actual iframe identifier.
+		frameHeight: document.body.offsetHeight + 10 /* a little extra for good measure */
+	}, '*');
 }
 
 if (window.ResizeObserver) {
-  const heightObserver = new ResizeObserver(() => {
-    sendResizeMessage();
-  });
-  heightObserver.observe(document.body);
+	const heightObserver = new ResizeObserver(() => {
+		sendResizeMessage();
+	});
+	heightObserver.observe(document.body);
 }
 ```
 
@@ -29,32 +29,32 @@ if (window.ResizeObserver) {
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
+	const API = await APILoader.create();
 
-  API.insert('content', (elem, meta) => {
-    const iframeElem = document.createElement('iframe');
-    iframeElem.src = 'https://www.yourdomain.com/path-to-iframe.htm';
-    iframeElem.classList.add('test-integration-iframe'); // Note: Replace 'test-integration-frame' with your actual iframe identifier.
-    API.append(elem, iframeElem);
-  });
+	API.insert('content', (elem, meta) => {
+		const iframeElem = document.createElement('iframe');
+		iframeElem.src = 'https://www.yourdomain.com/path-to-iframe.htm';
+		iframeElem.classList.add('test-integration-iframe'); // Note: Replace 'test-integration-frame' with your actual iframe identifier.
+		API.append(elem, iframeElem);
+	});
 
-  let setIframeHeight = e => {
-    if (e.origin !== 'https://www.yourdomain.com') {
-      // You should ALWAYS verify the origin matches the third party domain
-      // the iframe is loaded from. For more information, see:
-      // https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage#Security_concerns
-      return;
-    }
+	let setIframeHeight = e => {
+		if (e.origin !== 'https://www.yourdomain.com') {
+			// You should ALWAYS verify the origin matches the third party domain
+			// the iframe is loaded from. For more information, see:
+			// https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage#Security_concerns
+			return;
+		}
 
-    if (e.data.type === 'IFRAME_HEIGHT_RESIZE' && e.data.frameHeight && e.data.target) {
-      const iframes = document.getElementsByClassName(e.data.target);
-      if (iframes.length === 1) {
-        iframes[0].style.height = e.data.frameHeight + 'px';
-      }
-    }
-  }
+		if (e.data.type === 'IFRAME_HEIGHT_RESIZE' && e.data.frameHeight && e.data.target) {
+			const iframes = document.getElementsByClassName(e.data.target);
+			if (iframes.length === 1) {
+				iframes[0].style.height = e.data.frameHeight + 'px';
+			}
+		}
+	}
 
-  window.addEventListener('message', setIframeHeight, false);
+	window.addEventListener('message', setIframeHeight, false);
 })(window.DDC.APILoader);
 ```
 

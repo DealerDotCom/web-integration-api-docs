@@ -4,12 +4,12 @@
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.subscribe('page-load-v1', ev => {
-    if (ev.payload.searchPage) {
-      API.log('My integration has loaded and this is a search results page.');
-    }
-  });
+	const API = await APILoader.create();
+	API.subscribe('page-load-v1', ev => {
+		if (ev.payload.searchPage) {
+			API.log('My integration has loaded and this is a search results page.');
+		}
+	});
 })(window.DDC.APILoader);
 ```
 

@@ -8,23 +8,23 @@ In addition to the event based system for working with sites, some utility metho
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.subscribe('vehicle-data-updated-v1', data => {
+	const API = await APILoader.create();
+	API.subscribe('vehicle-data-updated-v1', data => {
 
-    API.log(data.payload.pageData); // Logs the Page Data object
-    API.log(data.payload.vehicleData); // Logs the updated Vehicle Data object
+		API.log(data.payload.pageData); // Logs the Page Data object
+		API.log(data.payload.vehicleData); // Logs the updated Vehicle Data object
 
-    API.utils.getAttributeForVehicles('vin').then(vins => {
-      // With the updated list of VINs, you could query your service
-      // to determine which VINs are supported by your service before
-      // placing relevant content such as buttons or iframes.
+		API.utils.getAttributeForVehicles('vin').then(vins => {
+			// With the updated list of VINs, you could query your service
+			// to determine which VINs are supported by your service before
+			// placing relevant content such as buttons or iframes.
 
-      // Code to query your service goes here.
+			// Code to query your service goes here.
 
-      // Output an array of VINs for vehicles currently displayed on the page.
-      API.log(vins);
-    });
-  })
+			// Output an array of VINs for vehicles currently displayed on the page.
+			API.log(vins);
+		});
+	})
 })(window.DDC.APILoader);
 ```
 
@@ -36,17 +36,17 @@ This can be used to obtain an array of attributes for the currently displayed ve
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  const testConfig = {
-    dealerId: "12345",
-    showOnSRP: true,
-    showOnVDP: false,
-    apiKey: "abcd12349876zyxw"
-  }
-  API.utils.getConfig(testConfig).then(config => {
-    // Output the configuration object for your integration (if defined).
-    API.log(config);
-  });
+	const API = await APILoader.create();
+	const testConfig = {
+		dealerId: "12345",
+		showOnSRP: true,
+		showOnVDP: false,
+		apiKey: "abcd12349876zyxw"
+	}
+	API.utils.getConfig(testConfig).then(config => {
+		// Output the configuration object for your integration (if defined).
+		API.log(config);
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -60,11 +60,11 @@ This fetches a JavaScript object of your integration's configuration for the cur
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.utils.getDealerData().then(dealerData => {
-    // Logs the Dealership Info Event object for the current website.
-    API.log(dealerData);
-  });
+	const API = await APILoader.create();
+	API.utils.getDealerData().then(dealerData => {
+		// Logs the Dealership Info Event object for the current website.
+		API.log(dealerData);
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -76,14 +76,14 @@ This fetches the <a href="#dealership-info-event">Dealership Info Event object</
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.utils.getJwtForSite().then(jwtObject => {
-    API.log(jwtObject);
-    // Returns a data structure like this:
-    // {
-    //   jwt: "eyJraWQiOiIya0k0XzIyZoLUUi...KpSUf6vJ8b9Z1NDRcIgv0GrZoiqPhTunw" // String
-    // }
-  });
+	const API = await APILoader.create();
+	API.utils.getJwtForSite().then(jwtObject => {
+		API.log(jwtObject);
+		// Returns a data structure like this:
+		// {
+		//   jwt: "eyJraWQiOiIya0k0XzIyZoLUUi...KpSUf6vJ8b9Z1NDRcIgv0GrZoiqPhTunw" // String
+		// }
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -96,15 +96,15 @@ This fetches an object containing a Java Web Token which can be used to secure/v
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.utils.getJwtForVehicles().then(jwtObject => {
-    API.log(jwtObject);
-    // Returns a data structure like this:
-    // {
-    //   vins: ["1HGCV1F51LA013850", "1HGCV1F16LA029720", "1HGCV1F32LA011829"], // Array
-    //   jwt: "eyJraWQiOiIya0k0XzIyZoLUUi...KpSUf6vJ8b9Z1NDRcIgv0GrZoiqPhTunw" // String
-    // }
-  });
+	const API = await APILoader.create();
+	API.utils.getJwtForVehicles().then(jwtObject => {
+		API.log(jwtObject);
+		// Returns a data structure like this:
+		// {
+		//   vins: ["1HGCV1F51LA013850", "1HGCV1F16LA029720", "1HGCV1F32LA011829"], // Array
+		//   jwt: "eyJraWQiOiIya0k0XzIyZoLUUi...KpSUf6vJ8b9Z1NDRcIgv0GrZoiqPhTunw" // String
+		// }
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -116,11 +116,11 @@ This fetches an object containing the array of VINs on the current page and a co
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.utils.getPageData().then(pageData => {
-    // Outputs the Page Data Object for the current page.
-    API.log(pageData);
-  });
+	const API = await APILoader.create();
+	API.utils.getPageData().then(pageData => {
+		// Outputs the Page Data Object for the current page.
+		API.log(pageData);
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -135,10 +135,10 @@ This can be useful when paired with the `unlockPricing` method. When `vehicle-da
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.subscribe('vehicle-data-updated-v1', data => {
-    const unlockedUuids = await API.utils.getUnlockedVehicles();
-  });
+	const API = await APILoader.create();
+	API.subscribe('vehicle-data-updated-v1', data => {
+		const unlockedUuids = await API.utils.getUnlockedVehicles();
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -146,25 +146,25 @@ This can be useful when paired with the `unlockPricing` method. When `vehicle-da
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.subscribe('vehicle-data-updated-v1', data => {
-    // Get the list of unlocked vehicles
-    const unlockedUuids = await API.utils.getUnlockedVehicles();
+	const API = await APILoader.create();
+	API.subscribe('vehicle-data-updated-v1', data => {
+		// Get the list of unlocked vehicles
+		const unlockedUuids = await API.utils.getUnlockedVehicles();
 
-    // Get the list of all vehicles
-    const uuids = API.utils.getAttributeForVehicles('uuid');
+		// Get the list of all vehicles
+		const uuids = API.utils.getAttributeForVehicles('uuid');
 
-    // Filter the unlocked UUIDs from the UUIDs.
-    const finalUuids = uuids.filter((el) => !unlockedUuids.includes(el));
+		// Filter the unlocked UUIDs from the UUIDs.
+		const finalUuids = uuids.filter((el) => !unlockedUuids.includes(el));
 
-    // Call your service with the list of finalUuids here, to reduce network overhead.
-    // Note: `callToYourService` is just an example here and not an implemented function in the API.
-    const uuidsToUnlock = await callToYourService(finalUuids);
+		// Call your service with the list of finalUuids here, to reduce network overhead.
+		// Note: `callToYourService` is just an example here and not an implemented function in the API.
+		const uuidsToUnlock = await callToYourService(finalUuids);
 
-    // Unlock vehicles which are not already unlocked, and your service indicates should be unlocked.
-    API.utils.unlockPricing(uuidsToUnlock);
+		// Unlock vehicles which are not already unlocked, and your service indicates should be unlocked.
+		API.utils.unlockPricing(uuidsToUnlock);
 
-  });
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -174,10 +174,10 @@ This can be useful when paired with the `unlockPricing` method. When `vehicle-da
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  const urlParams = API.utils.getUrlParams(); // Returns the current URL parameters as object attributes, so you can easily access the values.
-  API.log(urlParams); // Log the entire object.
-  API.log(urlParams.query); // Access just the `query` parameter, for example.
+	const API = await APILoader.create();
+	const urlParams = API.utils.getUrlParams(); // Returns the current URL parameters as object attributes, so you can easily access the values.
+	API.log(urlParams); // Log the entire object.
+	API.log(urlParams.query); // Access just the `query` parameter, for example.
 })(window.DDC.APILoader);
 ```
 
@@ -191,9 +191,9 @@ Will return the following object:
 
 `
 {
-  query: "This is the query",
-  hello: "world",
-  foo: "bar"
+	query: "This is the query",
+	hello: "world",
+	foo: "bar"
 }
 `
 
@@ -203,11 +203,11 @@ Will return the following object:
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  const config = API.utils.getVehicleData().then(vehicleData => {
-    // Outputs the current set of vehicle data.
-    API.log(vehicleData);
-  });
+	const API = await APILoader.create();
+	const config = API.utils.getVehicleData().then(vehicleData => {
+		// Outputs the current set of vehicle data.
+		API.log(vehicleData);
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -222,16 +222,16 @@ The method must be called on each page where you want the vehicles to be unlocke
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.subscribe('vehicle-data-updated-v1', data => {
-    // You could call a service here to determine the list of vehicles to unlock based on the set
-    // of vehicles presented on the current view, then construct the array of uuids accordingly.
-    const uuids = [
-      'f4b436e10a0e09a844d99ec8c92cf29c',
-      '1db75afc0a0e09713efa52d69381e2f1',
-      '808bb6a00a0e09716fa39a4a8b079353'
-    ];
-    API.utils.unlockPricing(uuids);
-  });
+	const API = await APILoader.create();
+	API.subscribe('vehicle-data-updated-v1', data => {
+		// You could call a service here to determine the list of vehicles to unlock based on the set
+		// of vehicles presented on the current view, then construct the array of uuids accordingly.
+		const uuids = [
+			'f4b436e10a0e09a844d99ec8c92cf29c',
+			'1db75afc0a0e09713efa52d69381e2f1',
+			'808bb6a00a0e09716fa39a4a8b079353'
+		];
+		API.utils.unlockPricing(uuids);
+	});
 })(window.DDC.APILoader);
 ```

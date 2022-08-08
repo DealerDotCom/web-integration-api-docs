@@ -6,10 +6,10 @@
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.subscribe('event-name-and-version', ev => {
-    API.log(ev);
-  });
+	const API = await APILoader.create();
+	API.subscribe('event-name-and-version', ev => {
+		API.log(ev);
+	});
 })(window.DDC.APILoader);
 ```
 Please see the <a href="#event-subscriptions">specific event documentation</a> for more detail on the available events and the data payload sent to your callback function.
@@ -20,22 +20,22 @@ Please see the <a href="#event-subscriptions">specific event documentation</a> f
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.insertCallToAction('button', 'value-a-trade', meta => {
-    return {
-      type: 'default',
-      href: 'https://www.yourdomain.com/value-a-trade/?vin=' + meta.vin,
-      target: '_blank',
-      text: {
-        en_US: 'Value My Trade',
-        fr_CA: 'Valeur mon commerce'
-      }
-    }
-  });
+	const API = await APILoader.create();
+	API.insertCallToAction('button', 'value-a-trade', meta => {
+		return {
+			type: 'default',
+			href: 'https://www.yourdomain.com/value-a-trade/?vin=' + meta.vin,
+			target: '_blank',
+			text: {
+				en_US: 'Value My Trade',
+				fr_CA: 'Valeur mon commerce'
+			}
+		}
+	});
 })(window.DDC.APILoader);
 ```
 
-The `insertCallToAction` method is used to create a call to action (CTA) button for placement on web site inventory items. Rather than generating markup and inserting it into a predefined location, when using this method you specify the CTA type (`button` is currently the only supported type), an intent (more on this below), and a data object describing the CTA's attributes. The data object follows the same pattern as the object passed into the <a href="#api-create-type-options">API.create method</a> which you can use as a reference to see all available config options.
+Designed for use within the <a href="#page-load-v1">Page Load subscription</a>, the `insertCallToAction` method is used to create a call to action (CTA) button for placement on web site inventory items. Rather than generating markup and inserting it into a predefined location, when using this method you specify the CTA type (`button` is currently the only supported type), an intent (more on this below), and a data object describing the CTA's attributes. The data object follows the same pattern as the object passed into the <a href="#api-create-type-options">API.create method</a> which you can use as a reference to see all available config options.
 
 Parameter Name | Purpose | Field Format
 -------------- | -------------- | --------------
@@ -45,7 +45,7 @@ Parameter Name | Purpose | Field Format
 
 `setupFunction` is called for each inventory item presented on the page. The `meta` field provided is the <a href="#vehicle-event">Vehicle Event</a> payload. You can use the vehicle data to construct an object describing your CTA's attributes, then return it back to the API. With the data returned from `setupFunction`, the API creates the markup for your button and places it into the CTA area on each vehicle card on the search results page and/or the CTA area on the vehicle details page. The placement depends on how you set up your code and the integration's configuration options for the given site.
 
-This method acts as an event subscription, so as the application displays new vehicles dynamically (a single page application), new events are fired and `setupFunction` is automatically called for each of those new items. This works well for a basic use case where you want to place content on every item having the target location, or every item matching specific criteria available to you in the `setupFunction` payload. If you need to execute intermediary code before determining if you need to insert content, such as calling an external service, you should use the <a href="#api-insertcalltoactiononce-type-intent-setupfunction-meta">`insertCallToActionOnce`</a> method instead.
+This method acts as an event subscription, so as the application displays new vehicles dynamically (a single page application), new events are fired and `setupFunction` is automatically called for each of those new items. This works well for a basic use case where you want to place content on every item having the target location, or every item matching specific criteria available to you in the `setupFunction` payload. If you need to execute intermediary code before determining if you need to insert content, such as calling an external service, you should use the <a href="#api-insertcalltoactiononce-type-intent-setupfunction-meta">`insertCallToActionOnce`</a> method instead. You should also always use <a href="#api-insertcalltoactiononce-type-intent-setupfunction-meta">`insertCallToActionOnce`</a> instead of `insertCallToAction` when running the code from within a <a href="#vehicle-data-updated-v1">Vehicle Data Updated subscription</a>.
 
 The default location for a CTA is the bottom of the existing CTA list on vehicle search results and details pages.
 
@@ -112,46 +112,46 @@ After creating the callback object, you must then return it for the API to creat
 ```javascript
 (async APILoader => {
 
-  // Initialize an instance of the API
-  const API = await APILoader.create(document.currentScript);
+	// Initialize an instance of the API
+	const API = await APILoader.create();
 
-  // Receive a notification each time vehicle data is updated on the page (or a new page is loaded).
-  API.subscribe('vehicle-data-updated-v1', ev => {
+	// Receive a notification each time vehicle data is updated on the page (or a new page is loaded).
+	API.subscribe('vehicle-data-updated-v1', ev => {
 
-    // Collect the VIN for each vehicle on the page in an array.
-    API.utils.getAttributeForVehicles('vin').then(vins => {
-      API.log("Calling service with these VINs: " + vins.join(','));
+		// Collect the VIN for each vehicle on the page in an array.
+		API.utils.getAttributeForVehicles('vin').then(vins => {
+			API.log("Calling service with these VINs: " + vins.join(','));
 
-      // Fetch data from your endpoint by supplying the list of VINs.
-      fetch('https://www.yourdomain.com/api/endpoint-that-returns-json?vins=' + vins.join(','))
-      .then(response => {
-        return response.json();
-      })
-      .then(serviceData => {
-        // Now that you have your service data, you can determine whether or not to place a CTA for this vehicle on the page.
-        API.insertCallToActionOnce('button', 'value-a-trade', meta => {
-          if (serviceData.hasOwnProperty(meta.vin)) {
-            return {
-              type: 'default',
-              classes: 'custom-class1 custom-class2',
-              href: 'https://www.yourdomain.com/value-a-trade/?vin=' + meta.vin,
-              target: '_blank',
-              text: {
-                en_US: 'Value My Trade',
-                fr_CA: 'Valeur mon commerce'
-              }
-            }
-          } else {
-            API.log("Skipping vehicle " + meta.vin + " because it does not have service data.");
-          }
-        });
-      });
-    });
-  });
+			// Fetch data from your endpoint by supplying the list of VINs.
+			fetch('https://www.yourdomain.com/api/endpoint-that-returns-json?vins=' + vins.join(','))
+			.then(response => {
+				return response.json();
+			})
+			.then(serviceData => {
+				// Now that you have your service data, you can determine whether or not to place a CTA for this vehicle on the page.
+				API.insertCallToActionOnce('button', 'value-a-trade', meta => {
+					if (serviceData.hasOwnProperty(meta.vin)) {
+						return {
+							type: 'default',
+							classes: 'custom-class1 custom-class2',
+							href: 'https://www.yourdomain.com/value-a-trade/?vin=' + meta.vin,
+							target: '_blank',
+							text: {
+								en_US: 'Value My Trade',
+								fr_CA: 'Valeur mon commerce'
+							}
+						}
+					} else {
+						API.log("Skipping vehicle " + meta.vin + " because it does not have service data.");
+					}
+				});
+			});
+		});
+	});
 })(window.DDC.APILoader);
 ```
 
-You may prefer to only insert a CTA when you are ready, after performing other functions. For example, if you need to make a service call to your system with a list of vehicles to determine which ones have data on your side, and only then add CTAs to supported vehicles. With `insertCallToActionOnce`, the method behaves as a functional insert which can be chained with other functions, and does not behave as a subscription. With `API.insertCallToActionOnce`, you will need to invoke it inside of a <a href="#vehicle-data-updated-v1">`vehicle-data-updated-v1`</a> subscription so that your code is triggered each time the list of vehicles is loaded on a page rather than only the first time.
+You may prefer to only insert a CTA when you are ready, after performing other functions. For example, if you need to make a service call to your system with a list of vehicles to determine which ones have data on your side, and only then add CTAs to supported vehicles. With `insertCallToActionOnce`, the method behaves as a functional insert which can be chained with other functions, and does not behave as a subscription. With `API.insertCallToActionOnce`, you will need to invoke it inside of a <a href="#vehicle-data-updated-v1">`vehicle-data-updated-v1`</a> subscription so that your code is triggered each time the list of vehicles is loaded on a page rather than only the first time. You should instead use <a href="#api-insertcalltoaction-type-intent-setupfunction-meta">`insertCallToAction`</a> instead of `insertCallToActionOnce` when running the code from within a <a href="#page-load-v1">Page Load subscription</a>.
 
 Field Name | Purpose | Field Format
 -------------- | -------------- | --------------
@@ -165,75 +165,75 @@ Field Name | Purpose | Field Format
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
+	const API = await APILoader.create();
 
-  // This informs your script when the displayed list of vehicles has changed, or when a Vehicle Details Page has loaded.
-  API.subscribe('vehicle-data-updated-v1', async ev => {
+	// This informs your script when the displayed list of vehicles has changed, or when a Vehicle Details Page has loaded.
+	API.subscribe('vehicle-data-updated-v1', async ev => {
 
-    // This obtains a list of VINs for the displayed vehicles.
-    const vins = await API.utils.getAttributeForVehicles('vin');
+		// This obtains a list of VINs for the displayed vehicles.
+		const vins = await API.utils.getAttributeForVehicles('vin');
 
-    // With the list of VINs, you could query your service
-    // to obtain the dataset of imagery for those vehicles.
+		// With the list of VINs, you could query your service
+		// to obtain the dataset of imagery for those vehicles.
 
-    // Code to query your service goes here.
-    const imagesData = await queryYourService(vins);
+		// Code to query your service goes here.
+		const imagesData = await queryYourService(vins);
 
-    // With the returned `imagesData`, you could then construct an array of objects in the following format to use when calling `API.insertGalleryContent`.
-    const imagesToInsert = [
-      {
-        vin: '1HGCV1F46LA144134',
-        insertMethod: 'insert',
-        images: [
-          {
-            type: 'image',
-            position: 'primary',
-            src: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Primary Image',
-            thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Primary Image',
-          },
-          {
-            type: 'image',
-            position: 'secondary',
-            src: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Secondary Image',
-            thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Secondary Image',
-          },
-          {
-            type: 'image',
-            position: 'last',
-            src: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Last Image',
-            thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Last Image',
-          }
-        ]
-      },
-      {
-        vin: '1HGCV1F48LA139453',
-        insertMethod: 'replace',
-        images: [
-          {
-            type: 'image',
-            position: 'primary',
-            src: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Primary Image',
-            thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Primary Image',
-          },
-          {
-            type: 'image',
-            position: 'secondary',
-            src: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Secondary Image',
-            thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Secondary Image',
-          },
-          {
-            type: 'image',
-            position: 'last',
-            src: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Last Image',
-            thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Last Image',
-          }
-        ]
-      }
-    ];
+		// With the returned `imagesData`, you could then construct an array of objects in the following format to use when calling `API.insertGalleryContent`.
+		const imagesToInsert = [
+			{
+				vin: '1HGCV1F46LA144134',
+				insertMethod: 'insert',
+				images: [
+					{
+						type: 'image',
+						position: 'primary',
+						src: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Primary Image',
+						thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Primary Image',
+					},
+					{
+						type: 'image',
+						position: 'secondary',
+						src: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Secondary Image',
+						thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Secondary Image',
+					},
+					{
+						type: 'image',
+						position: 'last',
+						src: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Last Image',
+						thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Last Image',
+					}
+				]
+			},
+			{
+				vin: '1HGCV1F48LA139453',
+				insertMethod: 'replace',
+				images: [
+					{
+						type: 'image',
+						position: 'primary',
+						src: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Primary Image',
+						thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Primary Image',
+					},
+					{
+						type: 'image',
+						position: 'secondary',
+						src: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Secondary Image',
+						thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Secondary Image',
+					},
+					{
+						type: 'image',
+						position: 'last',
+						src: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Last Image',
+						thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Last Image',
+					}
+				]
+			}
+		];
 
-    // And finally, call insertGalleryContent with the new imagery data.
-    API.insertGalleryContent('vehicle-media', imagesToInsert);
-  });
+		// And finally, call insertGalleryContent with the new imagery data.
+		API.insertGalleryContent('vehicle-media', imagesToInsert);
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -262,15 +262,15 @@ Name | Description
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.insert('location-name', (elem, meta) => {
-    API.log(elem); // The DOM element where markup may be inserted.
-    API.log(meta); // The payload object for the current insertion point.
-  });
+	const API = await APILoader.create();
+	API.insert('location-name', (elem, meta) => {
+		API.log(elem); // The DOM element where markup may be inserted.
+		API.log(meta); // The payload object for the current insertion point.
+	});
 })(window.DDC.APILoader);
 ```
 
-The insert method allows you to append markup to specific locations on some pages of Dealer sites. These locations are commonly targeted areas where you may want to place content.
+Designed for use within the <a href="#page-load-v1">Page Load subscription</a>, the insert method allows you to append markup to specific locations on some pages of Dealer sites. These locations are commonly targeted areas where you may want to place content.
 
 When activated, `API.insert` will call the callback function you define with the `elem` and `meta` parameters. It will call this for each relevant location on the page. For example, if you specify `vehicle-media` as the location and you are viewing a search results page with 30 vehicles, the callback function you define on `API.insert` will be called 30 times, once per vehicle, with the relevant location and vehicle data in the payload.
 
@@ -284,15 +284,15 @@ If you need to execute additional code before determining if you wish to insert 
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  // Receive a notification each time vehicle data is updated on the page (or a new page is loaded).
-  API.subscribe('vehicle-data-updated-v1', ev => {
-    // Insert content into each vehicle location now present on the page.
-    API.insertOnce('location-name', (elem, meta) => {
-      API.log(elem); // The DOM element where markup may be inserted.
-      API.log(meta); // The payload object for the current insertion point.
-    });
-  });
+	const API = await APILoader.create();
+	// Receive a notification each time vehicle data is updated on the page (or a new page is loaded).
+	API.subscribe('vehicle-data-updated-v1', ev => {
+		// Insert content into each vehicle location now present on the page.
+		API.insertOnce('location-name', (elem, meta) => {
+			API.log(elem); // The DOM element where markup may be inserted.
+			API.log(meta); // The payload object for the current insertion point.
+		});
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -301,45 +301,45 @@ If you need to execute additional code before determining if you wish to insert 
 ```javascript
 (async APILoader => {
 
-  // Initialize an instance of the API
-  const API = await APILoader.create(document.currentScript);
+	// Initialize an instance of the API
+	const API = await APILoader.create();
 
-  // Receive a notification each time vehicle data is updated on the page (or a new page is loaded).
-  API.subscribe('vehicle-data-updated-v1', ev => {
+	// Receive a notification each time vehicle data is updated on the page (or a new page is loaded).
+	API.subscribe('vehicle-data-updated-v1', ev => {
 
-    // Collect the VIN for each vehicle on the page in an array.
-    API.utils.getAttributeForVehicles('vin').then(vins => {
-      API.log("Calling service with these VINs: " + vins.join(','));
+		// Collect the VIN for each vehicle on the page in an array.
+		API.utils.getAttributeForVehicles('vin').then(vins => {
+			API.log("Calling service with these VINs: " + vins.join(','));
 
-      // Fetch data from your endpoint by supplying the list of VINs.
-      fetch('https://www.yourdomain.com/api/endpoint-that-returns-json?vins=' + vins.join(','))
-      .then(response => {
-        return response.json();
-      })
-      .then(serviceData => {
-        // Now that you have your service data, you can determine whether or not to place content for this location on to the page.
-        API.insertOnce('vehicle-badge', (elem, meta) => {
-          // Verify my service has data for this vehicle
-          if (serviceData.hasOwnProperty(meta.vin)) {
+			// Fetch data from your endpoint by supplying the list of VINs.
+			fetch('https://www.yourdomain.com/api/endpoint-that-returns-json?vins=' + vins.join(','))
+			.then(response => {
+				return response.json();
+			})
+			.then(serviceData => {
+				// Now that you have your service data, you can determine whether or not to place content for this location on to the page.
+				API.insertOnce('vehicle-badge', (elem, meta) => {
+					// Verify my service has data for this vehicle
+					if (serviceData.hasOwnProperty(meta.vin)) {
 
-            // Create your markup here
-            const div = document.createElement('div');
-            div.innerText = "Hello World!";
+						// Create your markup here
+						const div = document.createElement('div');
+						div.innerText = "Hello World!";
 
-            // Insert your markup into the parent element.
-            API.append(elem, div);
-          } else {
-            API.log("Skipping vehicle " + meta.vin + " because it does not have service data.");
-          }
-        });
-      });
-    });
-  });
+						// Insert your markup into the parent element.
+						API.append(elem, div);
+					} else {
+						API.log("Skipping vehicle " + meta.vin + " because it does not have service data.");
+					}
+				});
+			});
+		});
+	});
 })(window.DDC.APILoader);
 
 ```
 
-You may prefer to only insert content when you are ready, after performing other functions. For example, if you need to make a service call to your system with a list of vehicles to determine which ones have data on your side, and only then decorate specific vehicles with appropriate content. With `insertOnce`, the method behaves as a functional insert which can be chained with other functions, and does not behave as a subscription. With `API.insertOnce`, you will need to invoke it inside of a <a href="#vehicle-data-updated-v1">`vehicle-data-updated-v1`</a> subscription so that your code is triggered each time the list of vehicles is loaded on a page rather than only the first time.
+You may prefer to only insert content when you are ready, after performing other functions. For example, if you need to make a service call to your system with a list of vehicles to determine which ones have data on your side, and only then decorate specific vehicles with appropriate content. With `insertOnce`, the method behaves as a functional insert which can be chained with other functions, and does not behave as a subscription. With `API.insertOnce`, you will need to invoke it inside of a <a href="#vehicle-data-updated-v1">`vehicle-data-updated-v1`</a> subscription so that your code is triggered each time the list of vehicles is loaded on a page rather than only the first time. You should use <a href="#api-insertcalltoaction-type-intent-setupfunction-meta">`insertCallToAction`</a> instead of `insertCallToActionOnce` when running the code from within a <a href="#page-load-v1">Page Load subscription</a>.
 
 Field Name | Purpose | Field Format
 -------------- | -------------- | --------------
@@ -364,13 +364,13 @@ The attributes that can be modified are `href`, `target`, `onclick`, `popover` a
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.updateLink('x-time', meta => {
-    return {
-      href: 'https://www.yourdomain.com/?account=' + meta.accountId,
-      target: '_blank',
-    }
-  });
+	const API = await APILoader.create();
+	API.updateLink('x-time', meta => {
+		return {
+			href: 'https://www.yourdomain.com/?account=' + meta.accountId,
+			target: '_blank',
+		}
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -380,35 +380,35 @@ The attributes that can be modified are `href`, `target`, `onclick`, `popover` a
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  const button = API.create('button', {
-    href: 'https://www.google.com/',
-    text: {
-      'en_US': 'Visit Google', // English
-      'fr_CA': 'Visitez Google', // French
-      'es_MX': 'Visite Google' // Spanish
-    },
-    classes: 'btn btn-primary',
-    style: 'border: 2px solid #c00',
-    attributes: {
-      'data-custom-attribute': 'attribute-value',
-      'target': '_blank'
-    },
-    imgSrc: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
-    imgAlt: {
-      'en_US': 'Visit Google', // English
-      'fr_CA': 'Visitez Google', // French
-      'es_MX': 'Visite Google' // Spanish
-    },
-    imgClasses: 'custom-image-class another-class',
-    imgAttributes: {
-      'data-image-attribute': 'image-attribute-value'
-    },
-    onclick: () => {
-      window.MyIntegration.activateModalOverlay();
-    }
-  });
-  return button;
+	const API = await APILoader.create();
+	const button = API.create('button', {
+		href: 'https://www.google.com/',
+		text: {
+			'en_US': 'Visit Google', // English
+			'fr_CA': 'Visitez Google', // French
+			'es_MX': 'Visite Google' // Spanish
+		},
+		classes: 'btn btn-primary',
+		style: 'border: 2px solid #c00',
+		attributes: {
+			'data-custom-attribute': 'attribute-value',
+			'target': '_blank'
+		},
+		imgSrc: 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
+		imgAlt: {
+			'en_US': 'Visit Google', // English
+			'fr_CA': 'Visitez Google', // French
+			'es_MX': 'Visite Google' // Spanish
+		},
+		imgClasses: 'custom-image-class another-class',
+		imgAttributes: {
+			'data-image-attribute': 'image-attribute-value'
+		},
+		onclick: () => {
+			window.MyIntegration.activateModalOverlay();
+		}
+	});
+	return button;
 })(window.DDC.APILoader);
 ```
 
@@ -416,7 +416,7 @@ The attributes that can be modified are `href`, `target`, `onclick`, `popover` a
 
 ```html
 <a href="https://www.google.com/" class="btn btn-primary mb-3" data-custom-attribute="attribute-value" target="_blank" style="border: 2px solid rgb(204, 0, 0);">
-  <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Visit Google" class="custom-image-class another-class" data-image-attribute="image-attribute-value">
+	<img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Visit Google" class="custom-image-class another-class" data-image-attribute="image-attribute-value">
 </a>
 ```
 
@@ -446,8 +446,8 @@ Field Key | Example Value | Field Format | Purpose
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.append(targetEl, appendEl);
+	const API = await APILoader.create();
+	API.append(targetEl, appendEl);
 })(window.DDC.APILoader);
 ```
 
@@ -455,21 +455,21 @@ Field Key | Example Value | Field Format | Purpose
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.insert('target-location-name', (elem, meta) => {
-    let lowPrice = Math.round(meta.finalPrice - 1000);
-    let highPrice = Math.round(meta.finalPrice + 1000);
-    const button = API.create('button', {
-      text: 'Search This Price Range',
-      href: '/new-inventory/index.htm?internetPrice=' + lowPrice.toString() + '-' + highPrice.toString(),
-      classes: 'btn btn-primary',
-      style: 'margin-top: 12px;',
-      attributes: {
-        'target': '_blank'
-      }
-    })
-    API.append(elem, button);
-  });
+	const API = await APILoader.create();
+	API.insert('target-location-name', (elem, meta) => {
+		let lowPrice = Math.round(meta.finalPrice - 1000);
+		let highPrice = Math.round(meta.finalPrice + 1000);
+		const button = API.create('button', {
+			text: 'Search This Price Range',
+			href: '/new-inventory/index.htm?internetPrice=' + lowPrice.toString() + '-' + highPrice.toString(),
+			classes: 'btn btn-primary',
+			style: 'margin-top: 12px;',
+			attributes: {
+				'target': '_blank'
+			}
+		})
+		API.append(elem, button);
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -481,12 +481,12 @@ When calling the insert method, the goal is to insert some markup into a locatio
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  // Loads a JavaScript file
-  API.loadJS('https://www.company.com/script.js')
-    .then(() => {
-      // Code to execute after your JavaScript file has loaded.
-    });
+	const API = await APILoader.create();
+	// Loads a JavaScript file
+	API.loadJS('https://www.company.com/script.js')
+		.then(() => {
+			// Code to execute after your JavaScript file has loaded.
+		});
 })(window.DDC.APILoader);
 ```
 
@@ -498,12 +498,12 @@ The loadJS method is a simple way to include additional JavaScript files require
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  // Loads a CSS stylesheet
-  API.loadCSS('https://www.company.com/integration.css')
-    .then(() => {
-      // Code to execute after your stylesheet has loaded.
-    });
+	const API = await APILoader.create();
+	// Loads a CSS stylesheet
+	API.loadCSS('https://www.company.com/integration.css')
+		.then(() => {
+			// Code to execute after your stylesheet has loaded.
+		});
 })(window.DDC.APILoader);
 ```
 

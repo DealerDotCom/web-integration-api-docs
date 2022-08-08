@@ -12,20 +12,20 @@ There are currently three types of events and each has a consistent data format.
 
 ```javascript
 {
-  accountId: 'futuredemodealer',
-  siteId: 'futuredemodealer',
-  defaultDomain: 'www.roimotors.com',
-  indexPage: true,
-  searchPage: false,
-  detailPage: false,
-  franchises: ['honda'],
-  design: {
-    variationId: 'v9_GLOBAL_0011_V2',
-    themekit: 'BLUE_WHITE'
-  },
-  pageName: 'INDEX',
-  layoutType: 'desktop',
-  locale: 'en_US'
+	accountId: 'futuredemodealer',
+	siteId: 'futuredemodealer',
+	defaultDomain: 'www.roimotors.com',
+	indexPage: true,
+	searchPage: false,
+	detailPage: false,
+	franchises: ['honda'],
+	design: {
+		variationId: 'v9_GLOBAL_0011_V2',
+		themekit: 'BLUE_WHITE'
+	},
+	pageName: 'INDEX',
+	layoutType: 'desktop',
+	locale: 'en_US'
 }
 ```
 
@@ -49,21 +49,21 @@ Field Key | Example Value | Field Format
 
 ```javascript
 {
-  dealershipName: 'ROI Motors',
-  dealershipAddress1: '1 Howard Street',
-  dealershipAddress2: '',
-  dealershipCity: 'Burlington',
-  dealershipCodes: {
-    'dealertrack-post': 'futuredemodealer',
-    dtid: '12345',
-    'dt-dr-profile': 'futuredemodealer',
-    affiliate_promotions: 'avis',
-    'at-kbb': '12345678'
-  },
-  dealershipFranchises: ['honda'],
-  dealershipPostalCode: '05401',
-  dealershipStateProvince: 'VT',
-  dealershipCountry: 'US'
+	dealershipName: 'ROI Motors',
+	dealershipAddress1: '1 Howard Street',
+	dealershipAddress2: '',
+	dealershipCity: 'Burlington',
+	dealershipCodes: {
+		'dealertrack-post': 'futuredemodealer',
+		dtid: '12345',
+		'dt-dr-profile': 'futuredemodealer',
+		affiliate_promotions: 'avis',
+		'at-kbb': '12345678'
+	},
+	dealershipFranchises: ['honda'],
+	dealershipPostalCode: '05401',
+	dealershipStateProvince: 'VT',
+	dealershipCountry: 'US'
 }
 ```
 
@@ -85,60 +85,60 @@ Field Key | Example Value | Field Format
 
 ```javascript
 {
-  accountId: 'futuredemodealer',
-  address: {
-    accountName: 'ROI Motors',
-    city: 'Burlington',
-    state: 'VT',
-    postalCode: '05401',
-    country: 'US'
-  },
-  autodataCaId: '1234567',
-  bodyStyle: 'SUV',
-  certified: false,
-  chromeId: '411601',
-  cityFuelEconomy: 28,
-  classification: 'primary',
-  dealerCodes: {
-    'dealertrack-post': 'futuredemodealer',
-    dtid: '12345',
-    'dt-dr-profile': 'futuredemodealer',
-    affiliate_promotions: 'avis',
-    'at-kbb': '12345678'
-  },
-  driveLine: 'Front-wheel Drive',
-  engine: 'I-4 cyl',
-  engineSize: '1.5L',
-  exteriorColor: 'Crystal Black Pearl',
-  finalPrice: 32000,
-  fuelType: 'Regular Unleaded',
-  highestPrice: 34500,
-  highwayFuelEconomy: 34,
-  images: [
-    'https://pictures.dealer.com/f/futuredemodealer/1182/0686eb936bd7a4905f751493cc28dcb9x.jpg'
-  ],
-  internetPrice: 33000,
-  interiorColor: 'White',
-  inventoryType: 'new',
-  link: 'https://www.roimotors.com/new/Honda/2020-Honda-Accord-burlington-ab119e0e0a0a00f944d6f3031cd34854.htm',
-  make: 'Honda',
-  model: 'CR-V',
-  modelCode: 'RW1H9LKNW',
-  msrp: 34000,
-  odometer: 3,
-  optionCodes: [
-    'ABC',
-    '123',
-    '321'
-  ],
-  startingPrice: 34000,
-  status: 'live',
-  stockNumber: '00100060',
-  transmission: 'Variable',
-  trim: 'Touring 2WD',
-  uuid: 'ab119e0e0a0a00f944d6f3031cd34854',
-  vin: '1HGCV1F42JA141468',
-  year: 2020
+	accountId: 'futuredemodealer',
+	address: {
+		accountName: 'ROI Motors',
+		city: 'Burlington',
+		state: 'VT',
+		postalCode: '05401',
+		country: 'US'
+	},
+	autodataCaId: '1234567',
+	bodyStyle: 'SUV',
+	certified: false,
+	chromeId: '411601',
+	cityFuelEconomy: 28,
+	classification: 'primary',
+	dealerCodes: {
+		'dealertrack-post': 'futuredemodealer',
+		dtid: '12345',
+		'dt-dr-profile': 'futuredemodealer',
+		affiliate_promotions: 'avis',
+		'at-kbb': '12345678'
+	},
+	driveLine: 'Front-wheel Drive',
+	engine: 'I-4 cyl',
+	engineSize: '1.5L',
+	exteriorColor: 'Crystal Black Pearl',
+	finalPrice: 32000,
+	fuelType: 'Regular Unleaded',
+	highestPrice: 34500,
+	highwayFuelEconomy: 34,
+	images: [
+		'https://pictures.dealer.com/f/futuredemodealer/1182/0686eb936bd7a4905f751493cc28dcb9x.jpg'
+	],
+	internetPrice: 33000,
+	interiorColor: 'White',
+	inventoryType: 'new',
+	link: 'https://www.roimotors.com/new/Honda/2020-Honda-Accord-burlington-ab119e0e0a0a00f944d6f3031cd34854.htm',
+	make: 'Honda',
+	model: 'CR-V',
+	modelCode: 'RW1H9LKNW',
+	msrp: 34000,
+	odometer: 3,
+	optionCodes: [
+		'ABC',
+		'123',
+		'321'
+	],
+	startingPrice: 34000,
+	status: 'live',
+	stockNumber: '00100060',
+	transmission: 'Variable',
+	trim: 'Touring 2WD',
+	uuid: 'ab119e0e0a0a00f944d6f3031cd34854',
+	vin: '1HGCV1F42JA141468',
+	year: 2020
 }
 ```
 
@@ -221,10 +221,10 @@ To receive data for events, you must opt-in to event subscriptions. Each event i
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.subscribe('page-load-v1', ev => {
-    API.log(ev);
-  });
+	const API = await APILoader.create();
+	API.subscribe('page-load-v1', ev => {
+		API.log(ev);
+	});
 })(window.DDC.APILoader);
 
 ```
@@ -244,10 +244,10 @@ The page load event is useful to determine the context of the current page. By m
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.subscribe('dealership-info-v1', ev => {
-    API.log(ev);
-  });
+	const API = await APILoader.create();
+	API.subscribe('dealership-info-v1', ev => {
+		API.log(ev);
+	});
 })(window.DDC.APILoader);
 
 ```
@@ -267,10 +267,10 @@ The dealership info event is useful if you need to know the name and address of 
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.subscribe('vehicle-shown-v1', ev => {
-    API.log(ev);
-  });
+	const API = await APILoader.create();
+	API.subscribe('vehicle-shown-v1', ev => {
+		API.log(ev);
+	});
 })(window.DDC.APILoader);
 ```
 
@@ -291,11 +291,11 @@ On a vehicle deals page, a single event is fired because you are viewing a singl
 
 ```javascript
 (async APILoader => {
-  const API = await APILoader.create(document.currentScript);
-  API.subscribe('vehicle-data-updated-v1', data => {
-    API.log(data.payload.pageData); // Outputs the Page Data object to the console.
-    API.log(data.payload.vehicleData); // Outputs the updated Vehicle Data object to the console.
-  });
+	const API = await APILoader.create();
+	API.subscribe('vehicle-data-updated-v1', data => {
+		API.log(data.payload.pageData); // Outputs the Page Data object to the console.
+		API.log(data.payload.vehicleData); // Outputs the updated Vehicle Data object to the console.
+	});
 })(window.DDC.APILoader);
 ```
 
