@@ -286,7 +286,7 @@ The `callback` function you specify is called with a single parameter, which is 
 	 * Initial HTML Element where your markup can be inserted. You can modify this element or insert other content inside of it.
 	 * @type {HTMLElement} el
 
-	 * A unique ID for the location where your content will be inserted (either 'gallery' or 'photoswipe'). There are two insert locations on the Vehicle Details page. If your code requires a unique location on the page by ID (some video players may require this), you can add the `locationId` value to your target ID to make them unique.
+	 * A unique ID for the location where your content will be inserted (either 'carousel' or 'photoswipe'). There are two insert locations on the Vehicle Details page. If your code requires a unique location on the page by ID (some video players may require this), you can add the `locationId` value to your target ID to make them unique.
 	 * @type {string} locationId
 
 	 * The available width for your target location. This can be useful when constructing iframes to insert, etc.
