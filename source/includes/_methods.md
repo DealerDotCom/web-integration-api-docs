@@ -167,9 +167,29 @@ Field Name | Purpose | Field Format
 (async APILoader => {
 	const API = await APILoader.create();
 
+	// Callback function to be called when your HTML slide is rendered.
+	const myCallback = (data) => {
+		// The `el` property is the top level HTML element where your content will be placed. You may modify this element or insert additional elements into it.
+		const { el } = data;
+
+		// The height and width variables give you size information about the content placement location.
+		const { width, height } = data;
+
+		el.style.height = height;
+		el.style.width = width;
+
+		// The full Vehicle Object is available in the callback data.
+		const { vehicle } = data;
+
+		// This destructures a few variables out of that vehicle object for later use.
+		// The height and width variables give you size information about the content placement location.
+		const { year, make, model, vin } = vehicle;
+
+		el.innerHTML = `<iframe style="height: ${height}px; width: 100%; border: 0;" frameborder="0" src="https://www.myintegration.com/framed-in-content/index.html?year=${vehicle.year}&make=${vehicle.make}&model=${vehicle.model}&vin=${vehicle.vin}" />`;
+	}
+
 	// This informs your script when the displayed list of vehicles has changed, or when a Vehicle Details Page has loaded.
 	API.subscribe('vehicle-data-updated-v1', async ev => {
-
 		// This obtains a list of VINs for the displayed vehicles.
 		const vins = await API.utils.getAttributeForVehicles('vin');
 
@@ -186,10 +206,10 @@ Field Name | Purpose | Field Format
 				insertMethod: 'insert',
 				images: [
 					{
-						type: 'image',
+						type: 'html',
 						position: 'primary',
-						src: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Primary Image',
-						thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 1 Primary Image',
+						callback: myCallback,
+						src: 'https://via.placeholder.com/530x360.png?text=Primary HTML Content Placeholder'
 					},
 					{
 						type: 'image',
@@ -216,10 +236,10 @@ Field Name | Purpose | Field Format
 						thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Primary Image',
 					},
 					{
-						type: 'image',
+						type: 'html',
 						position: 'secondary',
-						src: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Secondary Image',
-						thumbnail: 'https://via.placeholder.com/530x360.png?text=Vehicle 2 Secondary Image',
+						callback: myCallback,
+						src: 'https://via.placeholder.com/530x360.png?text=Secondary HTML Content Placeholder'
 					},
 					{
 						type: 'image',
@@ -237,9 +257,9 @@ Field Name | Purpose | Field Format
 })(window.DDC.APILoader);
 ```
 
-The `insertGalleryContent` method allows you to add media to media galleries across various pages of Dealer.com sites. The only currently supported target is `vehicle-media`, which will insert media into the media carousels on Search Results Pages and Vehicle Details Pages.
+The `insertGalleryContent` method allows you to add media to galleries across various pages of Dealer.com sites. The only currently supported target is `vehicle-media`, which will insert media into the media carousels on Search Results Pages (Images only) and Vehicle Details Pages (Images and HTML slides).
 
-`arrayOfObjects` is an array of objects describing the media to be inserted. Each object requires a `vin` field for the target vehicle, an `images` array with fields describing the images to insert for that vehicle as well as an optional `insertMethod`. The `type` field specifies the type of media to be inserted. The only currently supported media type is `image`. Utilizing `vehicle-data-updated-v1` to know when the list of vehicles changes combined with `API.utils.getAttributeForVehicles`, you can easily obtain a list of the VINs for vehicles shown on the page. With this data, you could query your service to get the dataset of imagery for those vehicles, then construct the array of objects for `API.insertGalleryContent`. See the example code for more details on this approach.
+`arrayOfObjects` is an array of objects describing the media to be inserted. Each object requires a `vin` field for the target vehicle, an `images` array with fields describing the images and other HTML content to insert for that vehicle as well as an optional `insertMethod`. The `type` field specifies the type of media to be inserted. The available options are `image` and `html`. Utilizing `vehicle-data-updated-v1` to know when the list of vehicles changes combined with `API.utils.getAttributeForVehicles`, you can easily obtain a list of the VINs for vehicles shown on the page. With this data, you could query your service to get the dataset of imagery and other content for those vehicles, then construct the array of objects for `API.insertGalleryContent`. See the example code for more details on this approach.
 
 The `insertMethod` accepts the following string values:
 
@@ -252,9 +272,33 @@ The `images` array objects support the following additional attributes:
 
 Name | Description
 -------------- | --------------
+`type` | Expected values are `image` or `html`. The `html` and `callback` attributes are only used when type is set to `html`.
+`src` | HTTPS url to the image to be inserted.
 `position` | Where to insert the image. `primary` is used for content that should be displayed to the user as soon as it loads -- as long as the user has not explicitly performed an action to look at pre-existing media. `secondary` is used for content that should be displayed soon, but not replace the pre-existing main image. `last` is used to append content to the end of an existing gallery.
 `src` | HTTPS url to the image to be inserted.
 `thumbnail` | HTTPS url to a thumbnail of the image to be inserted. For performance, it is ideal to provide a low resolution thumbnail that can be used for a preview of the inserted image, however, `src` will be used if `thumbnail` is not provided.
+`html` | HTML markup to render when the user clicks on the placeholder image. This field is optional, as you can also use the `callback` function to create your markup.
+`callback` | A callback function to call when the user clicks on the placeholder image. This allows you to construct the HTML to display dynamically, with relevant data in context.
+
+The `callback` function you specify is called with a single parameter, which is an object with the following structure:
+
+	/**
+	 * Initial HTML Element where your markup can be inserted. You can modify this element or insert other content inside of it.
+	 * @type {HTMLElement} el
+
+	 * A unique ID for the location where your content will be inserted (either 'carousel' or 'photoswipe'). There are two insert locations on the Vehicle Details page. If your code requires a unique location on the page by ID (some video players may require this), you can add the `locationId` value to your target ID to make them unique.
+	 * @type {string} locationId
+
+	 * The available width for your target location. This can be useful when constructing iframes to insert, etc.
+	 * @type {number} width
+
+	 * The available height for your target location. This can be useful when constructing iframes to insert, etc.
+	 * @type {number} height
+
+	 * The Vehicle Object for the current vehicle, so you can use vehicle data when constructing your markup.
+	 * @type {object} vehicle
+	 */
+
 
 ## API.insert(name, callback(elem, meta))
 

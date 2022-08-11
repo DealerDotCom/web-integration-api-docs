@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added / Updated documentation for insertGalleryContent to include instructions on inserting HTML based slides to the gallery.
+
 ## [v2022-08-08T22.07.29] - 2022-08-08
 
 ## [v2022-08-08T20.41.26] - 2022-08-08
