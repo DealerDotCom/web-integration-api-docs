@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2022-08-11T04.06.47] - 2022-08-11
+
 ### Fixed
 
 -   Fix another content formatting issue.
@@ -126,7 +128,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Tagging and uploading the releases.
 -   Updating the changelog after a release
 
-[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2022-08-11T03.47.45...HEAD
+[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2022-08-11T04.06.47...HEAD
+
+[v2022-08-11T04.06.47]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2022-08-11T03.47.45...v2022-08-11T04.06.47
 
 [v2022-08-11T03.47.45]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2022-08-11T03.20.08...v2022-08-11T03.47.45
 
