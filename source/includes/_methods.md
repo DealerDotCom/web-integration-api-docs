@@ -280,26 +280,16 @@ Name | Description
 `html` | HTML markup to render when the user clicks on the placeholder image. This field is optional, as you can also use the `callback` function to create your markup.
 `callback` | A callback function to call when the user clicks on the placeholder image. This allows you to construct the HTML to display dynamically, with relevant data in context.
 
-The `callback` function you specify is called with a single parameter, which is an object with the following structure:
+The `callback` function you specify is called with a single parameter, which is an object with the following data structure:
 
-```javascript
-	/**
-	 * Initial HTML Element where your markup can be inserted. You can modify this element or insert other content inside of it.
-	 * @type {HTMLElement} el
+Name | Description
+-------------- | --------------
+`el` | `{HTMLElement}` Initial HTML Element where your markup can be inserted. You can modify this element or insert other content inside of it.
+`locationId` | `{string}` A unique ID for the location where your content will be inserted (either 'carousel' or 'photoswipe'). There are two insert locations on the Vehicle Details page. If your code requires a unique location on the page by ID (some video players may require this), you can add the `locationId` value to your target ID to make them unique.
+`width` | `{number}` The available width for your target location. This can be useful when constructing iframes to insert, etc.
+`height` | `{number}` The available height for your target location. This can be useful when constructing iframes to insert, etc.
+`vehicle` | `{object}` The Vehicle Object for the current vehicle, so you can use vehicle data when constructing your markup.
 
-	 * A unique ID for the location where your content will be inserted (either 'carousel' or 'photoswipe'). There are two insert locations on the Vehicle Details page. If your code requires a unique location on the page by ID (some video players may require this), you can add the `locationId` value to your target ID to make them unique.
-	 * @type {string} locationId
-
-	 * The available width for your target location. This can be useful when constructing iframes to insert, etc.
-	 * @type {number} width
-
-	 * The available height for your target location. This can be useful when constructing iframes to insert, etc.
-	 * @type {number} height
-
-	 * The Vehicle Object for the current vehicle, so you can use vehicle data when constructing your markup.
-	 * @type {object} vehicle
-	 */
-```
 
 ## API.insert(name, callback(elem, meta))
 

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+-   Fix another content formatting issue.
+
 ## [v2022-08-11T03.47.45] - 2022-08-11
 
 ### Fixed
