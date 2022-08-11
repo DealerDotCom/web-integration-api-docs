@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2022-08-11T03.20.08] - 2022-08-11
+
 ### Added
 
-- Added / Updated documentation for insertGalleryContent to include instructions on inserting HTML based slides to the gallery.
+-   Added / Updated documentation for insertGalleryContent to include instructions on inserting HTML based slides to the gallery.
 
 ## [v2022-08-08T22.07.29] - 2022-08-08
 
@@ -114,7 +116,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Tagging and uploading the releases.
 -   Updating the changelog after a release
 
-[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2022-08-08T22.07.29...HEAD
+[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2022-08-11T03.20.08...HEAD
+
+[v2022-08-11T03.20.08]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2022-08-08T22.07.29...v2022-08-11T03.20.08
 
 [v2022-08-08T22.07.29]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2022-08-08T20.41.26...v2022-08-08T22.07.29
 
