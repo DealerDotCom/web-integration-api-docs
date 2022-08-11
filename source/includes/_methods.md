@@ -282,6 +282,7 @@ Name | Description
 
 The `callback` function you specify is called with a single parameter, which is an object with the following structure:
 
+```javascript
 	/**
 	 * Initial HTML Element where your markup can be inserted. You can modify this element or insert other content inside of it.
 	 * @type {HTMLElement} el
@@ -298,7 +299,7 @@ The `callback` function you specify is called with a single parameter, which is 
 	 * The Vehicle Object for the current vehicle, so you can use vehicle data when constructing your markup.
 	 * @type {object} vehicle
 	 */
-
+```
 
 ## API.insert(name, callback(elem, meta))
 
