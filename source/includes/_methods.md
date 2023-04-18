@@ -65,6 +65,10 @@ Button Intent is a concept used in the API as a way to categorize the type of fu
 
 `check-availability`
 
+`delivery`
+
+`digital-retailing`
+
 `eprice`
 
 `payment-calculator`
