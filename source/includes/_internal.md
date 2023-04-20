@@ -12,7 +12,7 @@ The current supported intent types are:
 
 `payment-search`
 
-`pre-approva`
+`pre-approval`
 
 `quote-build`
 
