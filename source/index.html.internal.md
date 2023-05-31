@@ -14,6 +14,7 @@ includes:
   - methods
   - locations
   - utilities
+  - privateutils
   - jwt
   - debugging
   - internal

@@ -95,9 +95,13 @@ This element is positioned below the vehicle tech specs area on vehicle search a
 ```javascript
 (async APILoader => {
 	const API = await APILoader.create();
-	API.insert('vehicle-payments', (elem, meta) => {
-		// This element is positioned directly below the vehicle pricing area on vehicle search and detail pages.
-	});
+
+	const callback = (elem, meta) => {
+		// Insert your content here.
+	}
+
+	API.insert('vehicle-payments-primary', callback);
+	API.insert('vehicle-payments', callback);
 })(window.DDC.APILoader);
 ```
 
@@ -107,16 +111,31 @@ This element is positioned below the vehicle tech specs area on vehicle search a
 (async APILoader => {
 	const API = await APILoader.create();
 	API.subscribe('page-load-v1', ev => {
+
+		const { searchPage, detailPage } = ev.payload;
+
+		const callback = (elem, meta) => {
+			const button = API.create('button', {
+				text: 'Vehicle Payments',
+				href: '#',
+				classes: 'btn btn-primary'
+			})
+			API.append(elem, button);
+		};
+
 		// Only execute the code on search results and vehicle details pages.
-		if (ev.payload.searchPage || ev.payload.detailPage) {
-			API.insert('vehicle-payments', (elem, meta) => {
-				const button = API.create('button', {
-					text: 'Vehicle Payments',
-					href: '#',
-					classes: 'btn btn-primary'
-				})
-				API.append(elem, button);
-			});
+		if (searchPage || detailPage) {
+			
+			// This element exists only on the "Grid View" layout of the vehicle search page.
+			// The content appears below the primary price of the vehicle and above the "Info", "Specials" and "Pricing" tabs.
+			// Use this in addition to the `vehicle-payments` location if you want your content to be shown before the user clicks on the pricing tab.
+			if (searchPage) {
+				API.insert('vehicle-payments-primary', callback);
+			}
+
+			// This element is positioned directly below the vehicle pricing area on vehicle search and detail pages.
+			// On the "Grid View" layout of the vehicle search page, this content is placed inside the "Pricing" tab, below the vehicle price.
+			API.insert('vehicle-payments', callback);
 		}
 	});
 })(window.DDC.APILoader);
@@ -164,6 +183,7 @@ This element is positioned directly below the vehicle pricing area on vehicle se
 
 This element is positioned after the vehicle-payments insert location, and is placed below the pricing/incentives area on vehicle search and detail pages.
 
+
 ## Vehicle Media Container
 
 > Usage:
@@ -197,6 +217,98 @@ This element is positioned after the vehicle-payments insert location, and is pl
 ```
 
 This element is the media gallery container on vehicle details pages. Injecting into this location will replace the media gallery with the elements you insert.
+
+
+## Listings Page Search Facets - Pricing Facet
+
+> Usage:
+
+```javascript
+(async APILoader => {
+	const API = await APILoader.create();
+	API.insert('search-facet-pricing', async (elem) => {
+		const markup = document.createElement('div');
+		markup.setAttribute('style', 'background: #f00;')
+		markup.innerHTML = 'Your content goes here.';
+		API.append(elem, markup);
+	});
+})(window.DDC.APILoader);
+```
+
+> Example Implementation:
+
+```javascript
+(async APILoader => {
+	const API = await APILoader.create();
+	API.subscribe('page-load-v1', ev => {
+		if (!ev.payload.searchPage) {
+			return;
+		}
+
+		API.insert('search-facet-pricing', async (elem) => {
+			const markup = document.createElement('div');
+			markup.setAttribute('style', 'background: #f00;')
+			markup.innerHTML = 'Your content goes here.';
+			API.append(elem, markup);
+		});
+	});
+})(window.DDC.APILoader);
+```
+
+This element is positioned on the Search Results Page, within the Search Facets area. It is placed below the first (and typically only) Pricing related facet.
+
+On the Details page, it is positioned at the top of the vehicle information, below the media gallery.
+
+You can target either the listings or details page by first subscribing to the <a href="#page-load-v1">`page-load-v1`</a> event, then using the <a href="#page-event">event</a> values of `payload.searchPage` and `payload.detailPage` to check the page type.
+
+
+## Vehicle Banners
+
+> Usage:
+
+```javascript
+(async APILoader => {
+	const API = await APILoader.create();
+	API.insert('listings-placeholder-2', async (elem) => {
+		const markup = document.createElement('div');
+		markup.setAttribute('style', 'background: #f00;')
+		markup.innerHTML = 'Your content goes here.';
+		API.append(elem, markup);
+	});
+})(window.DDC.APILoader);
+```
+
+> Example Implementation:
+
+```javascript
+(async APILoader => {
+	const API = await APILoader.create();
+	API.subscribe('page-load-v1', ev => {
+		if (!ev.payload.searchPage) {
+			return;
+		}
+
+		API.insert('listings-placeholder-2', async (elem, meta) => {
+			const markup = document.createElement('div');
+			markup.setAttribute('style', 'background: #f00;')
+			markup.innerHTML = 'Your device type is ' + meta.layoutType;
+			API.append(elem, markup);
+		});
+	});
+})(window.DDC.APILoader);
+```
+
+There are four "Listings Banners" locations on the Search Results Page, interspersed evenly between the vehicles displayed. These locations are useful for inserting relevant content that a user would expect to see in a list alongside vehicles.
+
+As an example use case, `listings-placeholder-1` is used to place a widely adopted "My Wallet" integration on many websites. For this reason, it is preferable to use locations 2, 3 or 4 instead when possible.
+
+Available Listings Placeholder location names:
+
+- listings-placeholder-1
+- listings-placeholder-2
+- listings-placeholder-3
+- listings-placeholder-4
+
 
 ## Primary Banner
 
@@ -262,22 +374,24 @@ You can target either the listings or details page by first subscribing to the <
 ```javascript
 (async APILoader => {
 	const API = await APILoader.create();
-	API.subscribe('page-load-v1', ev => {
-		if (ev.payload.detailPage) {
-			API.insert('secondary-content', (elem, meta) => {
-				const containerEl = document.createElement('div');
-				containerEl.style = 'background-color: #ff0000; font-size: 30px; width: 100%; height: 540px; margin: 0 auto; padding: 100px; text-align: center;';
-				containerEl.innerHTML = 'Your secondary content container goes here.';
-				API.append(elem, containerEl);
-			});
+	API.subscribe('page-load-v1', (ev) => {
+		if (!ev.payload.detailPage) {
+			return;
 		}
+
+		API.insert('secondary-content', (elem, meta) => {
+			const containerEl = document.createElement('div');
+			containerEl.style = 'background-color: #ff0000; font-size: 30px; width: 100%; height: 540px; margin: 0 auto; padding: 100px; text-align: center;';
+			containerEl.innerHTML = 'Your secondary content container goes here.';
+			API.append(elem, containerEl);
+		});
 	});
 })(window.DDC.APILoader);
 ```
 
 By default, this element is roughly 2/3 of the way down on vehicle details pages.
 
-Since this may also be present on one or two standalone pages as custom additions, it is likely you will want to target just details pages by first subscribing to the <a href="#page-load-v1">`page-load-v1`</a> event, then using the <a href="#page-event">event</a> value of `payload.detailPage` to check the page type.
+Because this may also be present on one or two standalone pages as custom additions, it is likely you will want to exclusively target Vehicle Details pages by first subscribing to the <a href="#page-load-v1">`page-load-v1`</a> event, then using the <a href="#page-event">event</a> value of `payload.detailPage` to check the page type.
 
 ## Content
 
