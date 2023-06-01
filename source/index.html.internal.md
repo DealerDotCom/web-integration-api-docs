@@ -12,12 +12,13 @@ includes:
   - requirements
   - events
   - methods
+  - internal-methods
   - locations
+  - internal-locations
   - utilities
   - privateutils
   - jwt
   - debugging
-  - internal
   - samples
 
 search: true

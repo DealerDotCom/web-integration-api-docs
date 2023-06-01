@@ -1,4 +1,6 @@
-# DDC Specific / Internal Documentation
+# Internal API Methods
+
+These methods work the same as all of the public API methods, however they are restricted for internal DDC use only.
 
 ## API.insertMenuContent(target, arrayOfObjects)
 
@@ -82,7 +84,6 @@ Name | Description
 `data` | `{object}` The original data you passed to the `insertMenuContent` function.
 
 In addition to inserting static content, you can also add interactive functionality to the menu items by providing `onclick` functions. For example, you can prevent the default link behavior and display an alert message when a menu item is clicked, as demonstrated in the example code.
-
 
 ## API.updateLink(intent, setupFunction(meta))
 The `updateLink` method is used to override links on the page where the integration is enabled. 
