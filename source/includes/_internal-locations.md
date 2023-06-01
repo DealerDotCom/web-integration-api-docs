@@ -6,6 +6,8 @@ See the <a href="#api-insert-name-callback-elem-meta">insert documentation</a> f
 
 ## Header Toolbar
 
+This element is positioned in the _mobile_ header toolbar, typically next to the MyCars icon.
+
 > Usage:
 
 ```javascript
@@ -31,7 +33,7 @@ See the <a href="#api-insert-name-callback-elem-meta">insert documentation</a> f
 
 ```
 
-This element is positioned in the _mobile_ header toolbar, typically next to the MyCars icon. The placement can be controlled with the use of an itemlist. This is configured for the site in DVS, in this way:
+> The placement can be controlled with the use of an itemlist. This is configured for the site in DVS, in this way:
 
 ```xml
 <window-preferences-override id='default-mobile:template-navbar1'>
@@ -42,7 +44,7 @@ This element is positioned in the _mobile_ header toolbar, typically next to the
 </window-preferences-override>
 ```
 
-And then in the itemlist folder, add a file called `mobile-header-icons.xml` with content similar to this:
+> And then in the itemlist folder, add a file called `mobile-header-icons.xml` with content similar to this:
 
 ```xml
 <?xml version='1.0' encoding='UTF-8'?>
@@ -55,13 +57,13 @@ And then in the itemlist folder, add a file called `mobile-header-icons.xml` wit
 </item-list>
 ```
 
-The desired itemlist configuration for the site in question may differ from this example. The key is to add this item to the list where you want the `mobile-header-icons` location to be placed:
+The desired itemlist configuration for the site in question may differ from the example shown. The key is to add this item to the list where you want the `mobile-header-icons` location to be placed:
 
 `<item componentName='wiapi'/>`
 
 Once that is in place, the `header-toolbar` insert functionality will be available on the mobile site.
 
-## Listings Page Search Facets - Pricing Facet
+## Listings Page Search Facets - Pricing
 
 > Usage:
 
