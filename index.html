@@ -296,9 +296,6 @@
                     <a href="#api-insertgallerycontent-target-arrayofobjects" class="toc-h2 toc-link" data-title="API.insertGalleryContent(target, arrayOfObjects)">API.insertGalleryContent(target, arrayOfObjects)</a>
                   </li>
                   <li>
-                    <a href="#api-insertmenucontent-target-arrayofobjects" class="toc-h2 toc-link" data-title="API.insertMenuContent(target, arrayOfObjects)">API.insertMenuContent(target, arrayOfObjects)</a>
-                  </li>
-                  <li>
                     <a href="#api-insert-name-callback-elem-meta" class="toc-h2 toc-link" data-title="API.insert(name, callback(elem, meta))">API.insert(name, callback(elem, meta))</a>
                   </li>
                   <li>
@@ -1547,129 +1544,6 @@
 <td><code>{object}</code> The Vehicle Object for the current vehicle, so you can use vehicle data when constructing your markup.</td>
 </tr>
 </tbody></table>
-<h2 id='api-insertmenucontent-target-arrayofobjects'>API.insertMenuContent(target, arrayOfObjects)</h2>
-<blockquote>
-<p>Usage</p>
-</blockquote>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">(</span><span class="k">async</span> <span class="nx">APILoader</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">API</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">APILoader</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
-
-    <span class="nx">API</span><span class="p">.</span><span class="nx">insertMenuContent</span><span class="p">(</span><span class="dl">'</span><span class="s1">primary-menu</span><span class="dl">'</span><span class="p">,</span> <span class="p">[{</span>
-        <span class="na">position</span><span class="p">:</span> <span class="dl">'</span><span class="s1">top</span><span class="dl">'</span><span class="p">,</span>
-        <span class="na">primaryText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Some User</span><span class="dl">'</span><span class="p">,</span>
-        <span class="na">expanded</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="na">menuIcon</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="na">secondaryText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">some.user@emailclient.com</span><span class="dl">'</span><span class="p">,</span>
-        <span class="na">href</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#</span><span class="dl">'</span><span class="p">,</span>
-        <span class="na">subItems</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span>
-                <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Profile</span><span class="dl">'</span><span class="p">,</span>
-                <span class="na">href</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://www.domain.com/profile/</span><span class="dl">'</span><span class="p">,</span>
-                <span class="na">onclick</span><span class="p">:</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-                    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-                    <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Would have gone to the Profile linked in `href`, but preventDefault stopped it.</span><span class="dl">'</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">},</span>
-            <span class="p">{</span>
-                <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Shopping Cart (1)</span><span class="dl">'</span><span class="p">,</span>
-                <span class="na">href</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://www.domain.com/cart/</span><span class="dl">'</span>
-            <span class="p">},</span>
-            <span class="p">{</span>
-                <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Orders (0)</span><span class="dl">'</span><span class="p">,</span>
-                <span class="na">href</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://www.domain.com/orders/</span><span class="dl">'</span>
-            <span class="p">},</span>
-            <span class="p">{</span>
-                <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Documents</span><span class="dl">'</span><span class="p">,</span>
-                <span class="na">href</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://www.domain.com/documents/</span><span class="dl">'</span>
-            <span class="p">},</span>
-        <span class="p">],</span>
-        <span class="na">callback</span><span class="p">:</span> <span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">meta</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">meta</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="na">position</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bottom</span><span class="dl">'</span><span class="p">,</span>
-        <span class="na">primaryText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Sign Out</span><span class="dl">'</span><span class="p">,</span>
-        <span class="na">href</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://www.domain.com/logout/</span><span class="dl">'</span><span class="p">,</span>
-        <span class="na">onclick</span><span class="p">:</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-            <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">);</span>
-        <span class="p">},</span>
-        <span class="na">callback</span><span class="p">:</span> <span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">meta</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">meta</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}]);</span>
-<span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
-</code></pre></div>
-<p>The <code>insertMenuContent</code> method allows you to add custom items to the primary navigation menu of Dealer.com sites. You can specify where the items should appear, the primary and secondary text for each item, and any sub-items that should be displayed when the main item is expanded.</p>
-
-<p>The <code>target</code> parameter specifies the navigation menu to target. The only currently supported value is &#39;primary-menu&#39;.</p>
-
-<p>The <code>arrayOfObjects</code> parameter is an array of objects describing the menu items to be inserted. Each object can include the following properties:</p>
-
-<table><thead>
-<tr>
-<th>Property</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>position</code></td>
-<td>The location where the item should be inserted in the menu. The supported values are <code>top</code> and <code>bottom</code>.</td>
-</tr>
-<tr>
-<td><code>primaryText</code></td>
-<td>The main text for the menu item.</td>
-</tr>
-<tr>
-<td><code>secondaryText</code></td>
-<td>Additional text that appears beneath the primary text in the menu item.</td>
-</tr>
-<tr>
-<td><code>href</code></td>
-<td>The URL where the user should be directed when they click the menu item.</td>
-</tr>
-<tr>
-<td><code>subItems</code></td>
-<td>An array of sub-menu items that appear when the main item is expanded. Each sub-item can include the <code>text</code> and <code>href</code> properties, as well as an <code>onclick</code> property specifying a function to be executed when the sub-item is clicked.</td>
-</tr>
-<tr>
-<td><code>callback</code></td>
-<td>A function to be called after the menu item has been inserted. This function is passed three parameters: the newly-inserted HTML element (<code>elem</code>), the &#39;page event&#39; object (<code>meta</code>), and the original data passed to the <code>insertMenuContent</code> function (<code>data</code>).</td>
-</tr>
-<tr>
-<td><code>expanded</code></td>
-<td>A boolean value indicating whether the menu item should be expanded to show any sub-items when the page loads. The default value is <code>false</code>.</td>
-</tr>
-<tr>
-<td><code>menuIcon</code></td>
-<td>A boolean value indicating whether an icon should be displayed next to the menu item. The default value is <code>false</code>.</td>
-</tr>
-</tbody></table>
-
-<p>The <code>callback</code> function you specify is called with three parameters:</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>elem</code></td>
-<td><code>{HTMLElement}</code> The newly-inserted HTML element.</td>
-</tr>
-<tr>
-<td><code>meta</code></td>
-<td><code>{object}</code> The &#39;page event&#39; object. For more information, see the <a href="https://dealerdotcom.github.io/web-integration-api-docs/#page-event">page event documentation</a>.</td>
-</tr>
-<tr>
-<td><code>data</code></td>
-<td><code>{object}</code> The original data you passed to the <code>insertMenuContent</code> function.</td>
-</tr>
-</tbody></table>
-
-<p>In addition to inserting static content, you can also add interactive functionality to the menu items by providing <code>onclick</code> functions. For example, you can prevent the default link behavior and display an alert message when a menu item is clicked, as demonstrated in the example code.</p>
 <h2 id='api-insert-name-callback-elem-meta'>API.insert(name, callback(elem, meta))</h2>
 <blockquote>
 <p>Usage</p>
