@@ -101,12 +101,6 @@ Once that is in place, the `header-toolbar` insert functionality will be availab
 
 This element is positioned on the Search Results Page, within the Search Facets area. It is placed below the first (and typically only) Pricing related facet.
 
-On the Details page, it is positioned at the top of the vehicle information, below the media gallery.
-
-You can target either the listings or details page by first subscribing to the <a href="#page-load-v1">`page-load-v1`</a> event, then using the <a href="#page-event">event</a> values of `payload.searchPage` and `payload.detailPage` to check the page type.
-
-## Vehicle Banners
-
 > Usage:
 
 ```javascript
