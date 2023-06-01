@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2023-06-01T04.43.21] - 2023-06-01
+
 ## [v2023-06-01T02.58.03] - 2023-06-01
 
 ## [v2023-06-01T02.42.01] - 2023-06-01
@@ -144,7 +146,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Tagging and uploading the releases.
 -   Updating the changelog after a release
 
-[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-06-01T02.58.03...HEAD
+[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-06-01T04.43.21...HEAD
+
+[v2023-06-01T04.43.21]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-06-01T02.58.03...v2023-06-01T04.43.21
 
 [v2023-06-01T02.58.03]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-06-01T02.42.01...v2023-06-01T02.58.03
 
