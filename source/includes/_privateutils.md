@@ -40,7 +40,6 @@ That session storage entry is then read in by the `wsm-pricing-display` module a
 ```
 
 More details about specific fields in the config used by this method can be found [here](https://ghe.coxautoinc.com/DDC-WebPlatform/ddc-js-api/blob/master/src/utils/settings.js#L9). Please note, though, that at the moment, most integrations do not utilize these `settings` options.
-```
 
 This function returns a JavaScript object representing the sitewide settings that are applied for integrations on the current website or page of a site.
 
