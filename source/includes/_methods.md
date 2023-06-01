@@ -523,24 +523,9 @@ Field Key | Example Value | Field Format | Purpose
 
 When calling the insert method, the goal is to insert some markup into a location on the page. Once you have constructed the element(s) you wish to insert, you may call the `append` method to complete the process.
 
-## API.loadJS(resourceUrl)
-
-> Usage
-
-```javascript
-(async APILoader => {
-	const API = await APILoader.create();
-	// Loads a JavaScript file
-	API.loadJS('https://www.company.com/script.js')
-		.then(() => {
-			// Code to execute after your JavaScript file has loaded.
-		});
-})(window.DDC.APILoader);
-```
-
-The loadJS method is a simple way to include additional JavaScript files required for your integration. The method returns a JavaScript Promise which you can use to know when file loading is complete, to then run any necessary initialization functions, etc.
-
 ## API.loadCSS(resourceUrl)
+
+The loadCSS method is a simple way to include an additional CSS stylesheet file required for your integration. The method returns a JavaScript Promise that resolves when the loading is complete. You may then insert markup that depends on that styling to avoid displaying a flash of unstyled content.
 
 > Usage
 
@@ -555,4 +540,38 @@ The loadJS method is a simple way to include additional JavaScript files require
 })(window.DDC.APILoader);
 ```
 
-The loadCSS method is a simple way to include an additional CSS stylesheet file required for your integration. The method returns a JavaScript Promise which you can use to know when stylesheet loading is complete, to then insert markup that depends on that styling to avoid display a flash of unstyled content.
+## API.loadJS(resourceUrl, attributeMap)
+
+The loadJS method is a simple way to include additional JavaScript files required for your integration. The method returns a JavaScript Promise which you can use to know when file loading is complete, to then run any necessary initialization functions, etc.
+
+> Usage
+
+```javascript
+(async APILoader => {
+	const API = await APILoader.create();
+	// Loads a JavaScript file
+	API.loadJS('https://www.company.com/script.js')
+		.then(() => {
+			// Code to execute after your JavaScript file has loaded.
+		});
+})(window.DDC.APILoader);
+```
+
+> Usage with attributes
+
+> In some cases your code may look for data attributes on the inserted script tag. In this case, you may use the following example as a guide to add the necessary attributes:
+
+```javascript
+(async APILoader => {
+	const API = await APILoader.create();
+	const attributeMap = new Map([
+		['data-license-key', 'abc123'],
+		['id', 'myCompanyScript']
+	]);
+	API.loadJS('https://www.company.com/script.js', attributeMap).then(() => {
+		// Code to execute after your JavaScript file has loaded.
+	});
+})(window.DDC.APILoader);
+```
+
+> Note that the `attributeMap` parameter is optional and may be ommitted in most cases.
