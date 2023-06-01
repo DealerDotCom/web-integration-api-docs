@@ -85,13 +85,14 @@ Name | Description
 
 In addition to inserting static content, you can also add interactive functionality to the menu items by providing `onclick` functions. For example, you can prevent the default link behavior and display an alert message when a menu item is clicked, as demonstrated in the example code.
 
-## API.updateLink(intent, setupFunction(meta))
-The `updateLink` method is used to override links on the page where the integration is enabled. 
-In order to use this functionality the integration's schema in WISE needs to have a content mapping entry with the content type as `links`.
-The purpose of content needs to be the overriding links functionality (eg, X-Time). Then we just need to select all the PageAlias that we would like to target.
-The PageAlis list can be overriden in the site level to capture any sitebuilder pages as well.
+## API.updateLink(intent, setupFunction(meta)) (internal)
+The `updateLink` method is used to override links on the page where the integration is enabled.
 
-The WIAPI would deduce the link of the corresponding PageAlias in the site level letting you to modify the link element.
+In order to use this functionality, the integration's schema in WISE needs to have a content mapping entry with the content type as `links`.
+
+The purpose of content needs to be the overriding links functionality (e.g., X-Time overriding Service Scheduler pages). Then we need to select all the Page Aliases that we would like to target. The PageAlias list can be overriden in the site level to capture any SITEBUILDER pages as well.
+
+The WIAPI will determine the link of the corresponding Page Alias in the sitemap, allowing you to modify the link element.
 
 The current supported intent types are: 
 
@@ -105,7 +106,8 @@ The current supported intent types are:
 
 `value-a-trade`
 
-And, we only support limited attributes of the link to be modified in order to preserve the look and feel of the link.
+We only support limited attributes of the link to be modified in order to preserve the look and feel of the link.
+
 The attributes that can be modified are `href`, `target`, `onclick`, `popover` and `attributes (data-*)`.
 
 > Usage:
@@ -124,9 +126,9 @@ The attributes that can be modified are `href`, `target`, `onclick`, `popover` a
 
 ## Content Modification (deprecated)
 
-The `updateLink` method would be replacing this functionality.
+The `updateLink` method replaces this functionality.
 
-This method allows you to modify content on a page level. Right now we only support the modification of the `schedule-service` button. So, by using this method you would be able to modify the link attributes of all the schedule service buttons on a page.
+This method allows you to modify content on a page level. Right now we only support the modification of the `schedule-service` button. By using this method you can modify the link attributes of all the schedule service buttons on a page.
 
 > Usage:
 
