@@ -337,12 +337,6 @@
                     <a href="#vehicle-media-container" class="toc-h2 toc-link" data-title="Vehicle Media Container">Vehicle Media Container</a>
                   </li>
                   <li>
-                    <a href="#listings-page-search-facets-pricing-facet" class="toc-h2 toc-link" data-title="Listings Page Search Facets - Pricing Facet">Listings Page Search Facets - Pricing Facet</a>
-                  </li>
-                  <li>
-                    <a href="#vehicle-banners" class="toc-h2 toc-link" data-title="Vehicle Banners">Vehicle Banners</a>
-                  </li>
-                  <li>
                     <a href="#primary-banner" class="toc-h2 toc-link" data-title="Primary Banner">Primary Banner</a>
                   </li>
                   <li>
@@ -2062,89 +2056,6 @@ The attributes that can be modified are <code>href</code>, <code>target</code>, 
 <span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
 </code></pre></div>
 <p>This element is the media gallery container on vehicle details pages. Injecting into this location will replace the media gallery with the elements you insert.</p>
-<h2 id='listings-page-search-facets-pricing-facet'>Listings Page Search Facets - Pricing Facet</h2>
-<blockquote>
-<p>Usage:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">(</span><span class="k">async</span> <span class="nx">APILoader</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">API</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">APILoader</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
-    <span class="nx">API</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="dl">'</span><span class="s1">search-facet-pricing</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">elem</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="kd">const</span> <span class="nx">markup</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
-        <span class="nx">markup</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">style</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">background: #f00;</span><span class="dl">'</span><span class="p">)</span>
-        <span class="nx">markup</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Your content goes here.</span><span class="dl">'</span><span class="p">;</span>
-        <span class="nx">API</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">markup</span><span class="p">);</span>
-    <span class="p">});</span>
-<span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>Example Implementation:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">(</span><span class="k">async</span> <span class="nx">APILoader</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">API</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">APILoader</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
-    <span class="nx">API</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="dl">'</span><span class="s1">page-load-v1</span><span class="dl">'</span><span class="p">,</span> <span class="nx">ev</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ev</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">searchPage</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="nx">API</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="dl">'</span><span class="s1">search-facet-pricing</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">elem</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="kd">const</span> <span class="nx">markup</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
-            <span class="nx">markup</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">style</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">background: #f00;</span><span class="dl">'</span><span class="p">)</span>
-            <span class="nx">markup</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Your content goes here.</span><span class="dl">'</span><span class="p">;</span>
-            <span class="nx">API</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">markup</span><span class="p">);</span>
-        <span class="p">});</span>
-    <span class="p">});</span>
-<span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
-</code></pre></div>
-<p>This element is positioned on the Search Results Page, within the Search Facets area. It is placed below the first (and typically only) Pricing related facet.</p>
-
-<p>On the Details page, it is positioned at the top of the vehicle information, below the media gallery.</p>
-
-<p>You can target either the listings or details page by first subscribing to the <a href="#page-load-v1"><code>page-load-v1</code></a> event, then using the <a href="#page-event">event</a> values of <code>payload.searchPage</code> and <code>payload.detailPage</code> to check the page type.</p>
-<h2 id='vehicle-banners'>Vehicle Banners</h2>
-<blockquote>
-<p>Usage:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">(</span><span class="k">async</span> <span class="nx">APILoader</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">API</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">APILoader</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
-    <span class="nx">API</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="dl">'</span><span class="s1">listings-placeholder-2</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">elem</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="kd">const</span> <span class="nx">markup</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
-        <span class="nx">markup</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">style</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">background: #f00;</span><span class="dl">'</span><span class="p">)</span>
-        <span class="nx">markup</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Your content goes here.</span><span class="dl">'</span><span class="p">;</span>
-        <span class="nx">API</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">markup</span><span class="p">);</span>
-    <span class="p">});</span>
-<span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>Example Implementation:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">(</span><span class="k">async</span> <span class="nx">APILoader</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">API</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">APILoader</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
-    <span class="nx">API</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="dl">'</span><span class="s1">page-load-v1</span><span class="dl">'</span><span class="p">,</span> <span class="nx">ev</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ev</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">searchPage</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="nx">API</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="dl">'</span><span class="s1">listings-placeholder-2</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">meta</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="kd">const</span> <span class="nx">markup</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
-            <span class="nx">markup</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">style</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">background: #f00;</span><span class="dl">'</span><span class="p">)</span>
-            <span class="nx">markup</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Your device type is </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">meta</span><span class="p">.</span><span class="nx">layoutType</span><span class="p">;</span>
-            <span class="nx">API</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">elem</span><span class="p">,</span> <span class="nx">markup</span><span class="p">);</span>
-        <span class="p">});</span>
-    <span class="p">});</span>
-<span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
-</code></pre></div>
-<p>There are four &quot;Listings Banners&quot; locations on the Search Results Page, interspersed evenly between the vehicles displayed. These locations are useful for inserting relevant content that a user would expect to see in a list alongside vehicles.</p>
-
-<p>As an example use case, <code>listings-placeholder-1</code> is used to place a widely adopted &quot;My Wallet&quot; integration on many websites. For this reason, it is preferable to use locations 2, 3 or 4 instead when possible.</p>
-
-<p>Available Listings Placeholder location names:</p>
-
-<ul>
-<li>listings-placeholder-1</li>
-<li>listings-placeholder-2</li>
-<li>listings-placeholder-3</li>
-<li>listings-placeholder-4</li>
-</ul>
 <h2 id='primary-banner'>Primary Banner</h2>
 <blockquote>
 <p>Usage:</p>
