@@ -27,21 +27,26 @@ That session storage entry is then read in by the `wsm-pricing-display` module a
 
 ## API.privateUtils.getSettings()
 
-> Usage:
+**Usage:**
 
 ```javascript
 (async APILoader => {
 	const API = await APILoader.create();
 	const settings = await API.privateUtils.getSettings();
 
-	// Output the settings that are applicable for the current page.
+	// Output the settings object for the current page.
 	API.log(settings);
-
 })(window.DDC.APILoader);
 ```
 
-This retreives a JavaScript object of your integration's configuration for the current website and page. At this time, most integrations do not use these `settings` options. It should be noted that `settings` are not the same as integration `configs`. Configs are for a particular integration and provide data for how that integration should behave on a given site. Settings may apply to an entire site, or a particular page of a site, and may be used by multiple integrations or on-platform functionality. Think of `settings` more like a feature flag that is enabled on a site or specific page, rather than a configuration option that is intended for one integration.
+More details about specific fields in the config used by this method can be found [here](https://ghe.coxautoinc.com/DDC-WebPlatform/ddc-js-api/blob/master/src/utils/settings.js#L9). Please note, though, that at the moment, most integrations do not utilize these `settings` options.
+```
 
-The way this works is that the values for specific field names in Integration Configs are copied into the Settings for a given page. This is currently used by the My Wallet integration. When the integration is enabled, [these fields in the config](https://ghe.coxautoinc.com/DDC-WebPlatform/ddc-js-api/blob/master/src/utils/settings.js#L9) are noticed and copied into the page settings by the API. This is useful so that we can tell other functionality on the platform to behave accordingly.
+This function returns a JavaScript object representing the sitewide settings that are applied for integrations on the current website or page of a site.
 
-Other methods such as `hideDefaultPayments` and `showDefaultPayments` may also control the configured `settings` on deamnd. There is an `addToSettings` function in the `privateUtils` which could be exposed and used directly, but is currently only available indirectly through the helper functions to hide and show payments.
+One important thing to note is that integrations `settings` are not the same as integration `configs`. While `configs` provide data on how a single integration should operate on a specific website, `settings` may apply to the whole site or a specific page, and may be utilized by multiple integrations or on-platform functionalities. It's best to think of `settings` as a feature flag enabled on a website or a specific page (or a "site property"), rather than a configuration option exclusive to a single integration.
+
+The function works by copying values for [specific field names](https://ghe.coxautoinc.com/DDC-WebPlatform/ddc-js-api/blob/master/src/utils/settings.js#L9) from integration `configs` into the `settings` for a given page. This functionality is currently in use by the [My Wallet integration](https://ghe.coxautoinc.com/DDC-WebPlatform/ddc-mywallet-integration). When the integration is enabled, specific fields in the config are detected and copied into the page settings by the API. This proves useful in signaling other platform functionalities to act accordingly.
+
+Other methods such as `hideDefaultPayments` and `showDefaultPayments` may alter the configured `settings` on the fly. The `privateUtils` object also contains an `addToSettings` function which could potentially be used directly, though it's currently only indirectly accessible via the helper functions to hide and show payments.
+
