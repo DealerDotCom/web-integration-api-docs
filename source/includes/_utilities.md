@@ -4,7 +4,7 @@ In addition to the event based system for working with sites, some utility metho
 
 ## API.utils.getAttributeForVehicles(attribute)
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -32,7 +32,7 @@ This can be used to obtain an array of attributes for the currently displayed ve
 
 ## API.utils.getConfig(testConfig)
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -56,7 +56,7 @@ This fetches a JavaScript object of your integration's configuration for the cur
 
 ## API.utils.getDealerData()
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -72,7 +72,7 @@ This fetches the <a href="#dealership-info-event">Dealership Info Event object</
 
 ## API.utils.getJwtForSite()
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -92,7 +92,7 @@ This fetches an object containing a Java Web Token which can be used to secure/v
 
 ## API.utils.getJwtForVehicles()
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -112,7 +112,7 @@ This fetches an object containing the array of VINs on the current page and a co
 
 ## API.utils.getPageData()
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -131,7 +131,7 @@ The utility method `getUnlockedVehicles` returns an array of vehicle UUIDs where
 
 This can be useful when paired with the `unlockPricing` method. When `vehicle-data-updated-v1` triggers, a list of currently displayed vehicles is provided. You could gather the list of vehicles, skip the ones which are already unlocked, and then call your service for a smaller subset of vehicles which may need to be unlocked.
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -170,7 +170,7 @@ This can be useful when paired with the `unlockPricing` method. When `vehicle-da
 
 ## API.utils.getUrlParams()
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -199,7 +199,7 @@ Will return the following object:
 
 ## API.utils.getVehicleData()
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -218,7 +218,7 @@ You can provide the vehicles to unlock by passing an array of vehicle UUIDs to t
 
 The method must be called on each page where you want the vehicles to be unlocked. If a vehicle has been previously unlocked, it will be initially displayed unlocked on a subsequent view of the vehicle. However, when faceting and searching vehicles it is common for a mix of locked and unlocked vehicles to be rendered. Therefore, it is necessary to call the function each time the `vehicle-data-updated-v1` event is triggered.
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {

@@ -408,7 +408,7 @@ The current supported intent types are:
 And, we only support limited attributes of the link to be modified in order to preserve the look and feel of the link.
 The attributes that can be modified are `href`, `target`, `onclick`, `popover` and `attributes (data-*)`.
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {

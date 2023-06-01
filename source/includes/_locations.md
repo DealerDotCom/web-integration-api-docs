@@ -6,7 +6,7 @@ See the <a href="#api-insert-name-callback-elem-meta">insert documentation</a> f
 
 ## Vehicle Media
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -45,7 +45,7 @@ This element is positioned below the vehicle image area on vehicle search pages.
 
 ## Vehicle Badge
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -90,7 +90,7 @@ This element is positioned below the vehicle tech specs area on vehicle search a
 
 ## Vehicle Payments
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -146,7 +146,7 @@ This element is positioned directly below the vehicle pricing area on vehicle se
 
 ## Vehicle Pricing
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -186,7 +186,7 @@ This element is positioned after the vehicle-payments insert location, and is pl
 
 ## Vehicle Media Container
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -220,7 +220,7 @@ This element is the media gallery container on vehicle details pages. Injecting 
 
 ## Primary Banner
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -265,7 +265,7 @@ You can target either the listings or details page by first subscribing to the <
 
 ## Secondary Content
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -303,7 +303,7 @@ Because this may also be present on one or two standalone pages as custom additi
 
 ## Content
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {

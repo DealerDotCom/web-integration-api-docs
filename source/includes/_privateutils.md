@@ -4,7 +4,7 @@ These utilities methods are only intended to be used internally by DDC and not p
 
 ## API.privateUtils.hideDefaultPayments()
 
-> Usage:
+> **Usage:**
 
 ```javascript
 (async APILoader => {
@@ -27,7 +27,7 @@ That session storage entry is then read in by the `wsm-pricing-display` module a
 
 ## API.privateUtils.getSettings()
 
-**Usage:**
+> **Usage:**
 
 ```javascript
 (async APILoader => {
