@@ -103,7 +103,7 @@ Field Name | Purpose | Example Value(s) | Field Format
 `classes` | A space delimited list of class names to add to the CTA. | `custom-class1 custom-class2` | String
 `href` | The URL to access when the CTA is clicked. Must begin with `https://`. | `https://www.yourdomain.com/` | String
 `target` | The link target. | `_blank`, `_self` | String
-`onclick` | A function to attach as a click handler to the CTA. | `window.MyIntegation.clickFunction` | Function
+`onclick` | A function to attach as a click handler to the CTA. | `window.MyIntegration.clickFunction` | Function
 `text` | An object supplying text for the CTA in one or more languages. `en_US` is required at minimum. `fr_CA` is highly recommended. | See usage example | Object
 `attributes` | An object of `data-` attributes to add to the CTA. |  | String
 
