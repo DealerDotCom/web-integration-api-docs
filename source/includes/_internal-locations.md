@@ -63,6 +63,8 @@ The desired itemlist configuration for the site in question may differ from the 
 
 Once that is in place, the `header-toolbar` insert functionality will be available on the mobile site.
 
+Note: `header-toolbar` is not compatible with header options/variations `V9_HEADER_LAYOUT_COMPACT_V1`, `V9_HEADER_LAYOUT_DEFAULT_V1`. Space in these variations is very limited to add content in this location.
+
 ## Listings Page Search Facets - Pricing
 
 > Usage:
