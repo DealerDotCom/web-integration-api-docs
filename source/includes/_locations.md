@@ -301,6 +301,36 @@ By default, this element is roughly 2/3 of the way down on vehicle details pages
 
 Because this may also be present on one or two standalone pages as custom additions, it is likely you will want to exclusively target Vehicle Details pages by first subscribing to the <a href="#page-load-v1">`page-load-v1`</a> event, then using the <a href="#page-event">event</a> value of `payload.detailPage` to check the page type.
 
+## Header Toolbar
+
+> **Usage:**
+
+```javascript
+(async APILoader => {
+    const API = await APILoader.create();
+    API.insert('header-toolbar', (elem, meta) => {
+        // This element is positioned in the header next to all navigation items.
+    });
+  })(window.DDC.APILoader);
+```
+
+> Example Implementation:
+
+```javascript
+(async APILoader => {
+    const API = await APILoader.create();
+          API.insert('header-toolbar', (elem, meta) => {
+              const containerEl = document.createElement('div');
+                containerEl.innerHTML = 'HEY!';
+              API.append(elem, containerEl);
+          });
+})(window.DDC.APILoader);
+```
+
+This element is positioned in the header next to all navigation items.
+
+Note: `header-toolbar` is not compatible with header options: V9_HEADER_LAYOUT_COMPACT_V1, V9_HEADER_LAYOUT_DEFAULT_V1
+
 ## Content
 
 > **Usage:**
