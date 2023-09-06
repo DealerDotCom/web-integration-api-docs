@@ -8,8 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
 
 -   Updated `Internal Locations` documentation to add a note about uncompatible header variations with header-toolbar
-  
+
 ## [Unreleased]
+
+## [v2023-09-06T15.57.59] - 2023-09-06
 
 ## [v2023-06-01T18.03.57] - 2023-06-01
 
@@ -154,7 +156,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Tagging and uploading the releases.
 -   Updating the changelog after a release
 
-[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-06-01T18.03.57...HEAD
+[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-09-06T15.57.59...HEAD
+
+[v2023-09-06T15.57.59]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-06-01T18.03.57...v2023-09-06T15.57.59
 
 [v2023-06-01T18.03.57]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-06-01T12.36.41...v2023-06-01T18.03.57
 
