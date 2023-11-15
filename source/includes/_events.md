@@ -109,6 +109,7 @@ Field Key | Example Value | Field Format
 	driveLine: 'Front-wheel Drive',
 	engine: 'I-4 cyl',
 	engineSize: '1.5L',
+	estimatedDeliveryDate: '10/30/2037',
 	exteriorColor: 'Crystal Black Pearl',
 	finalPrice: 32000,
 	fuelType: 'Regular Unleaded',
@@ -184,6 +185,7 @@ Field Key | Example Value | Field Format | Status
 `driveLine` | `FWD` | `String`
 `engine` | `I-4 cyl` | `String`
 `engineSize` | `1.5L` | `String`
+`estimatedDeliveryDate` | `10/30/2028` | `String`
 `exteriorColor` | `Platinum White Pearl` | `String`
 `finalPrice` | `32000` | `Integer`
 `fuelType` | `Regular Unleaded` | `String`
