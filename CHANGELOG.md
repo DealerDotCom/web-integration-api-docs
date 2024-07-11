@@ -7,13 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2024-07-11T19.56.25] - 2024-07-11
+
 ## Added
 
-- Added documentation for `getPixallVisitorId()`
+-   Added documentation for `getPixallVisitorId()`
 
 ### Updated
 
-- Updated `estimateDeliveryDate` to `deliveryDateRange`
+-   Updated `estimateDeliveryDate` to `deliveryDateRange`
 
 ## [v2023-11-15T00.44.26] - 2023-11-15
 
@@ -170,7 +172,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Tagging and uploading the releases.
 -   Updating the changelog after a release
 
-[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-11-15T00.44.26...HEAD
+[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2024-07-11T19.56.25...HEAD
+
+[v2024-07-11T19.56.25]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-11-15T00.44.26...v2024-07-11T19.56.25
 
 [v2023-11-15T00.44.26]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-09-06T15.57.59...v2023-11-15T00.44.26
 
