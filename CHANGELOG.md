@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Added
+
+- Added documentation for `getPixallVisitorId()`
+
+### Updated
+
+- Updated `estimateDeliveryDate` to `deliveryDateRange`
+
 ## [v2023-11-15T00.44.26] - 2023-11-15
 
 ### Updated
