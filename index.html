@@ -316,6 +316,9 @@
                   <li>
                     <a href="#api-loadjs-resourceurl-attributemap" class="toc-h2 toc-link" data-title="API.loadJS(resourceUrl, attributeMap)">API.loadJS(resourceUrl, attributeMap)</a>
                   </li>
+                  <li>
+                    <a href="#api-getpixallvisitorid" class="toc-h2 toc-link" data-title="API.getPixallVisitorId()">API.getPixallVisitorId()</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -672,7 +675,7 @@
     <span class="nx">driveLine</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Front-wheel Drive</span><span class="dl">'</span><span class="p">,</span>
     <span class="nx">engine</span><span class="p">:</span> <span class="dl">'</span><span class="s1">I-4 cyl</span><span class="dl">'</span><span class="p">,</span>
     <span class="nx">engineSize</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1.5L</span><span class="dl">'</span><span class="p">,</span>
-    <span class="nx">estimatedDeliveryDate</span><span class="p">:</span> <span class="dl">'</span><span class="s1">10/30/2028</span><span class="dl">'</span><span class="p">,</span>
+    <span class="nx">deliveryDateRange</span><span class="p">:</span> <span class="dl">'</span><span class="s1">10/30/2028 - 11/15/2028</span><span class="dl">'</span><span class="p">,</span>
     <span class="nx">exteriorColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Crystal Black Pearl</span><span class="dl">'</span><span class="p">,</span>
     <span class="nx">finalPrice</span><span class="p">:</span> <span class="mi">32000</span><span class="p">,</span>
     <span class="nx">fuelType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Regular Unleaded</span><span class="dl">'</span><span class="p">,</span>
@@ -824,8 +827,8 @@
 <td></td>
 </tr>
 <tr>
-<td><code>estimatedDeliveryDate</code></td>
-<td><code>10/30/2028</code></td>
+<td><code>deliveryDateRange</code></td>
+<td><code>10/30/2028 - 11/15/2028</code></td>
 <td><code>String</code></td>
 <td></td>
 </tr>
@@ -1888,7 +1891,17 @@ The attributes that can be modified are <code>href</code>, <code>target</code>, 
 <blockquote>
 <p>Note that the <code>attributeMap</code> parameter is optional and may be ommitted in most cases.</p>
 </blockquote>
-<h1 id='insert-locations'>Insert Locations</h1>
+<h2 id='api-getpixallvisitorid'>API.getPixallVisitorId()</h2>
+<p>The getPixallVisitorId method returns the Pixall Id for the current website visitor. Pixall provides a unique identifier for each visitor to aggregate analytics events initiated by that shopper across marketplaces.</p>
+
+<blockquote>
+<p>Usage</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">(</span><span class="k">async</span> <span class="nx">APILoader</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">API</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">APILoader</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">pxa_id</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">API</span><span class="p">.</span><span class="nx">getPixallVisitorId</span><span class="p">();</span>
+<span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">DDC</span><span class="p">.</span><span class="nx">APILoader</span><span class="p">);</span>
+</code></pre></div><h1 id='insert-locations'>Insert Locations</h1>
 <p>Insert locations are areas of pages where you can safely insert markup. These exist in commonly used areas, such as below vehicle pricing on search and detail pages. This section details the current available locations. Please let us know if there are other locations you want to target beyond those listed here.</p>
 
 <p>See the <a href="#api-insert-name-callback-elem-meta">insert documentation</a> for more details on the insert method.</p>
