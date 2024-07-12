@@ -124,6 +124,20 @@ This fetches an object containing the array of VINs on the current page and a co
 })(window.DDC.APILoader);
 ```
 
+## API.utils.getPixallVisitorId()
+
+The getPixallVisitorId method returns the Pixall ID for the current website visitor. Pixall provides a unique identifier for each visitor to aggregate analytics events initiated by that shopper across marketplaces.
+
+> Usage
+
+```javascript
+(async APILoader => {
+    const API = await APILoader.create();
+    const visitorId = await API.utils.getPixallVisitorId();
+	// `visitorId` now equals a string value similar to this example: 'e9qAVkIRhnC64Pd4EfdwhB3Z'
+})(window.DDC.APILoader);
+```
+
 This fetches the <a href="#page-event">Page Event object</a> for the current website and page.
 
 ## API.utils.getUnlockedVehicles()
