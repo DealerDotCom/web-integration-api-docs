@@ -575,16 +575,3 @@ The loadJS method is a simple way to include additional JavaScript files require
 ```
 
 > Note that the `attributeMap` parameter is optional and may be ommitted in most cases.
-
-## API.getPixallVisitorId()
-
-The getPixallVisitorId method returns the Pixall Id for the current website visitor. Pixall provides a unique identifier for each visitor to aggregate analytics events initiated by that shopper across marketplaces.
-
-> Usage
-
-```javascript
-(async APILoader => {
-    const API = await APILoader.create();
-    const pxa_id = await API.getPixallVisitorId();
-})(window.DDC.APILoader);
-```

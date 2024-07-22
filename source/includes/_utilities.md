@@ -235,3 +235,19 @@ The method must be called on each page where you want the vehicles to be unlocke
 	});
 })(window.DDC.APILoader);
 ```
+
+## API.utils.getPixallVisitorId()
+
+The getPixallVisitorId method returns the Pixall Id for the current website visitor. Pixall provides a unique identifier for each visitor to aggregate analytics events initiated by that shopper across marketplaces.
+
+> **Usage:**
+
+```javascript
+(async APILoader => {
+    const API = await APILoader.create();
+    API.utils.getPixallVisitorId().then(pixallId => {
+        // Outputs PixallVisitorId value
+        API.log(pixallId);
+    });
+})(window.DDC.APILoader);
+```
