@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Added
+
+- Moved `getPixallVisitorId()` to API.utils
+
 ## [v2024-07-12T18.29.35] - 2024-07-12
 
 ## [v2024-07-11T19.56.25] - 2024-07-11
