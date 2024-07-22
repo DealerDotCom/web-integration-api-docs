@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Moved `getPixallVisitorId()` to API.utils
 
+## [v2024-07-12T18.29.35] - 2024-07-12
+
 ## [v2024-07-11T19.56.25] - 2024-07-11
 
 ## Added
@@ -176,7 +178,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Tagging and uploading the releases.
 -   Updating the changelog after a release
 
-[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2024-07-11T19.56.25...HEAD
+[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2024-07-12T18.29.35...HEAD
+
+[v2024-07-12T18.29.35]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2024-07-11T19.56.25...v2024-07-12T18.29.35
 
 [v2024-07-11T19.56.25]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2023-11-15T00.44.26...v2024-07-11T19.56.25
 
