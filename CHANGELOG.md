@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2024-07-24T16.03.32] - 2024-07-24
+
 ### Added
 
-- Added / Updated documentation for vehicle event to add oemSourcedMerchandsingStatus field.
+-   Added / Updated documentation for vehicle event to add oemSourcedMerchandsingStatus field.
 
 ## [v2024-07-12T18.29.35] - 2024-07-12
 
@@ -178,7 +180,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Tagging and uploading the releases.
 -   Updating the changelog after a release
 
-[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2024-07-12T18.29.35...HEAD
+[Unreleased]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2024-07-24T16.03.32...HEAD
+
+[v2024-07-24T16.03.32]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2024-07-12T18.29.35...v2024-07-24T16.03.32
 
 [v2024-07-12T18.29.35]: https://github.com/DealerDotCom/web-integration-api-docs/compare/v2024-07-11T19.56.25...v2024-07-12T18.29.35
 
