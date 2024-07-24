@@ -181,11 +181,11 @@ Field Key | Example Value | Field Format | Status
 `cityFuelEconomy` | `30` | `Integer`
 `classification` | `primary` | `String`
 `dealerCodes` | `{"dealertrack-post": "futuredemodealer", "dtid": "12345", "dt-dr-profile": "futuredemodealer"}` | `Object`
+`deliveryDateRange` | `10/30/2028 - 11/15/2028` | `String`
 `doors` | `4-door` | `String`
 `driveLine` | `FWD` | `String`
 `engine` | `I-4 cyl` | `String`
 `engineSize` | `1.5L` | `String`
-`deliveryDateRange` | `10/30/2028 - 11/15/2028` | `String`
 `exteriorColor` | `Platinum White Pearl` | `String`
 `finalPrice` | `32000` | `Integer`
 `fuelType` | `Regular Unleaded` | `String`
@@ -201,6 +201,7 @@ Field Key | Example Value | Field Format | Status
 `modelCode` | `RW1H9LKNW` | `String`
 `msrp` | `34000` | `Integer` | `Deprecated`
 `odometer` | `5` | `Integer`
+`oemSourcedMerchandisingStatus` | `Reserved` | `String`
 `optionCodes` | `["ABC", "123", "321"]` | `Array`
 `retailValue` | `32000` | `Integer` | `Deprecated`
 `salePrice` | `32000` | `Integer` | `Deprecated`
